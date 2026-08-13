@@ -1,11 +1,11 @@
 # 🚀 Hirit — Job Portal Platform
 
-[![Status](https://img.shields.io/badge/Status-Completed-success)](#)
+[![Status](https://img.shields.io/badge/Status-Active-success)](#)
 [![Frontend](https://img.shields.io/badge/Frontend-React_18_%2B_TypeScript-blue)](frontend)
 [![Backend](https://img.shields.io/badge/Backend-FastAPI-success)](backend)
 [![Database](https://img.shields.io/badge/Database-PostgreSQL_%2F_Supabase-336791)](backend/schema.sql)
 
-Welcome to **Hirit** (pronounced *Hire-it*), a full-stack replica of a job search engine and applicant tracking system built as a demo prototype and MVP (Minimum Viable Product). This platform is built with **FastAPI**, **React 18 (TypeScript)**, and **Supabase (PostgreSQL 17, Auth, and Storage)**.
+Welcome to **Hirit** (pronounced *Hire-it*), a full-stack job search and applicant tracking platform. This repository hosts a job seeker portal platform focusing on advanced job search, resume uploads, and application tracking. This platform is built with **FastAPI**, **React 18 (TypeScript)**, and **Supabase (PostgreSQL 17, Auth, and Storage)**.
 
 ---
 
@@ -15,7 +15,6 @@ Welcome to **Hirit** (pronounced *Hire-it*), a full-stack replica of a job searc
 - [📦 Tech Stack](#-tech-stack)
 - [🗂️ Project Structure](#%EF%B8%8F-project-structure)
 - [🛠️ Database Setup & Schema Migrations](#%EF%B8%8F-database-setup--schema-migrations)
-- [📡 API Usage & JSON Payloads](#-api-usage--json-payloads)
 - [⚙️ Setup & Installation](#%EF%B8%8F-setup--installation)
 - [🔑 Environment Variables](#-environment-variables)
 - [🔐 Local Dev Accounts](#-local-dev-accounts)
@@ -27,26 +26,24 @@ Welcome to **Hirit** (pronounced *Hire-it*), a full-stack replica of a job searc
 
 ## 🚀 The Hirit Application Lifecycle Flow
 
-### Step 1: Secure Authentication & Role Assignment
-1. Users register at `/register` as either a **Job Seeker** or an **Employer**.
-2. **Supabase Auth** creates a user instance, and a database trigger propagates user details into the `public.profiles` table with the corresponding role state (`seeker` or `employer`).
+### Step 1: Secure Authentication
+1. Users register at `/register` as a **Job Seeker**.
+2. **Supabase Auth** creates a user instance, and a database trigger propagates user details into the `public.profiles` table.
 3. During login at `/login`, the frontend exchanges credentials with the backend, which returns a JWT access token and a refresh token.
 4. Subsequent API calls are secured via FastAPI dependency injection guards (`dependencies.py`), which verify and decode the JWT headers.
 
-### Step 2: Job Listing & Candidate Auto-Matching
-1. **Employers** publish job postings through the posting editor. Postings are stored in the `public.jobs` table with parameters such as skills required, salary ranges, experience brackets, and remote work settings.
-2. **Job Seekers** search jobs on `/jobs` with advanced filters. The API dynamically generates PostgreSQL queries using Supabase SDK filters.
-3. The platform computes profile suitability. If a candidate's skills, experience, and desired salary match the job requirements, the system calculates a match percentage (e.g., `98% Suitability`) using vector overlaps.
+### Step 2: Seeker Profile Customization
+1. Job Seekers configure their profile at `/profile` by filling in personal details (headline, location, biography, and profile photo).
+2. Seekers add structural milestones detailing their **Education History** and **Work Experience** (stored in `public.education` and `public.work_experience` tables).
+3. Seekers add professional **Skills** to their profile (propagated to `public.user_skills`).
 
-### Step 3: Application Lifecycle & Resume Storage
-1. When a seeker clicks **Apply**:
-   - The frontend uploads the resume file (PDF/Word) directly to the **Supabase Storage bucket** (`resumes/`).
-   - The backend creates an application entry in `public.applications` containing the unique bucket URL, an optional cover letter, and a status field initialized to `applied`.
-2. Real-time notifications are pushed to the **Employer** dashboard, alerting them of new candidates.
+### Step 3: Job Search
+1. Job Seekers search jobs on `/jobs` with advanced filters (keywords, location, category, remote setup, and job types) to discover active opportunities.
 
-### Step 4: Recruiting Pipeline Tracking
-1. From the applicant dashboard `/employer/jobs/:id/applicants`, the employer reviews candidate profiles, downloads resumes, and moves candidates through pipeline stages.
-2. Updating candidate status (e.g., `Applied → Shortlisted → Interviewed → Offered / Rejected`) triggers notification rows in the `public.notifications` table to alert the seeker instantly.
+### Step 4: Application Submission & Status Tracking
+1. When a seeker clicks **Apply**, the frontend uploads their resume file (PDF/Word) to the **Supabase Storage bucket** (`resumes/`).
+2. The backend creates an application entry in `public.applications` containing the cover letter, resume bucket URL, expected salary, and notice period.
+3. Seekers track the progress of all submitted applications directly from their dashboard.
 
 ---
 
@@ -137,79 +134,12 @@ hirit/
 
 ## 🛠️ Database Setup & Schema Migrations
 
-The database consists of **16 tables** managed securely in Supabase.
+The database consists of **11 tables** managed securely in Supabase.
 
 ### Schema Deployment Step
 1. Go to your **Supabase Dashboard** -> **SQL Editor**.
 2. Create a new query, paste the full contents of the database migration script: [backend/schema.sql](backend/schema.sql).
 3. Execute the query. This sets up all primary tables, constraints, foreign keys, and RLS guidelines.
-
----
-
-## 📡 API Usage & JSON Payloads
-
-### 1. User Registration (`POST /api/auth/register`)
-**Request Body:**
-```json
-{
-  "email": "candidate@hirit.in",
-  "password": "SecurePassword123",
-  "password_confirm": "SecurePassword123",
-  "first_name": "Rajesh",
-  "last_name": "Kumar",
-  "role": "seeker",
-  "phone": "+919876543210"
-}
-```
-
-**Response (200 OK):**
-```json
-{
-  "access_token": "eyJhbGciOiJIUzI1NiIsIn...",
-  "refresh_token": "e5b86fd8-97c9-467f-8d9e...",
-  "user": {
-    "id": "c10d32f4-8a7e-462a-b9c1-8406f5ea9b02",
-    "email": "candidate@hirit.in",
-    "role": "SEEKER",
-    "first_name": "Rajesh",
-    "last_name": "Kumar"
-  }
-}
-```
-
-### 2. Job Creation (`POST /api/jobs`)
-**Headers:** `Authorization: Bearer <access_token>`
-
-**Request Body:**
-```json
-{
-  "title": "Senior Frontend Engineer",
-  "description": "We are looking for a Senior React Developer with experience in TypeScript.",
-  "company_id": "8a74b02d-0b74-4b51-9dfc-26a1b5c102a4",
-  "location": "Bengaluru, India",
-  "is_remote": true,
-  "job_type": "full-time",
-  "experience_min": 5,
-  "experience_max": 8,
-  "salary_min": 1800000,
-  "salary_max": 2500000,
-  "category": "Software Engineering",
-  "openings_count": 2,
-  "status": "active"
-}
-```
-
-### 3. Application Submission (`POST /api/applications`)
-**Headers:** `Authorization: Bearer <access_token>`
-
-**Request Body:**
-```json
-{
-  "job_id": "c1a93b4d-2e7d-4c81-8b9a-7f61b0de2c40",
-  "cover_letter": "I am excited to apply for this role. Attached is my resume.",
-  "resume_url": "https://supabase.co/storage/v1/object/public/resumes/c10d32_resume.pdf"
-}
-```
 
 ---
 
@@ -219,8 +149,21 @@ The database consists of **16 tables** managed securely in Supabase.
 - Python 3.11+
 - Node.js 18+
 - Active Supabase Project
+- Git
 
-### 1. Backend Service Setup
+### 1. Clone the Repository
+```bash
+git clone https://github.com/Vermaakshita/hirit-job-portal.git
+cd hirit-job-portal
+```
+
+### 2. Database Schema Setup
+Deploy the database tables before launching the services:
+1. Go to your **Supabase Dashboard** -> **SQL Editor**.
+2. Create a new query and paste the complete content of [backend/schema.sql](backend/schema.sql).
+3. Click **Run** to execute the query and initialize the 11 database tables and constraints.
+
+### 3. Backend Service Setup
 ```bash
 cd backend
 python -m venv venv
@@ -236,9 +179,9 @@ Start the FastAPI application:
 ```bash
 uvicorn app.main:app --reload
 ```
-API Documentation: `http://localhost:8000/docs`
+API Swagger Documentation: `http://localhost:8000/docs`
 
-### 2. Frontend Client Setup
+### 4. Frontend Client Setup
 ```bash
 cd ../frontend
 npm install
@@ -280,7 +223,7 @@ Every configuration file has a matching `.env.example` template: `backend/.env.e
 
 ## 🔐 Local Dev Accounts
 
-No user credentials or pre-configured accounts are published in this repository. Setup your own local test accounts by signing up through the web application's registration portal at `http://localhost:5173/register` as either a **Job Seeker** or an **Employer**.
+No user credentials or pre-configured accounts are published in this repository. Setup your own local test accounts by signing up through the web application's registration portal at `http://localhost:5173/register` as a **Job Seeker**.
 
 ---
 
@@ -313,4 +256,4 @@ All **117 tests** pass cleanly with 100% green integrity status.
 
 ## 📌 Project Status
 
-🚧 **MVP Demo Prototype** — This project is an actively developed demonstration prototype. It showcases the core authentication pipeline, frontend components, and dashboard interfaces configured for testing and evaluation purposes.
+🚧 **Hirit Job Seeker Portal** — This project is an actively developed demonstration platform. It showcases the core authentication pipeline, frontend components, and dashboard interfaces configured for testing and evaluation of job seeker workflows (such as advanced filtering, resume uploads, and application tracking).

@@ -1,6 +1,6 @@
 # Hirit Frontend
 
-This is the React client for the **Hirit** job portal. It features a modern, centered layout with interactive dashboard views, job search filters, applicant tracking pipelines, and real-time auto-matching.
+This is the React client for the **Hirit** job portal. It features a modern, centered layout with interactive dashboard views, advanced job search filters, resume upload portals, and application tracking.
 
 ## Setup Instructions
 
