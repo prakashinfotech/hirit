@@ -1,7 +1,7 @@
-# Foundit.in Clone — Project Context for Claude Agents
+# Hirit — Project Context for Claude Agents
 
 ## Project Goal
-Production-grade exact replica of foundit.in — India's leading job portal.
+Production-grade exact replica of foundit.in, branded as Hirit — India's leading job portal.
 
 ## Tech Stack
 - **Backend**: FastAPI (Python 3.11) — runs on port 8000
@@ -154,6 +154,6 @@ VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 3. ALWAYS handle loading + error states in every React component
 4. NEVER hardcode secrets — use environment variables
 5. ALL protected routes must check JWT token via dependencies.py
-6. Match Foundit.in UI exactly — orange #f04e23 is primary color
+6. Match Foundit.in UI layout exactly, branded as Hirit
 7. Use TanStack Query for all data fetching on frontend
 8. Commit after every completed feature

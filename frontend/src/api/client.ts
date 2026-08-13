@@ -1,8 +1,8 @@
 import axios, { type AxiosError, type InternalAxiosRequestConfig } from 'axios';
 import type { ApiError } from '../types';
 
-const TOKEN_KEY = 'foundit_access_token';
-const REFRESH_KEY = 'foundit_refresh_token';
+const TOKEN_KEY = 'hirit_access_token';
+const REFRESH_KEY = 'hirit_refresh_token';
 
 export const apiClient = axios.create({
   baseURL: import.meta.env.VITE_API_URL ?? 'http://localhost:8000',
@@ -86,7 +86,7 @@ apiClient.interceptors.response.use(
       // Don't intercept 401s from the auth endpoints themselves — let the UI handle them
       const url = originalRequest.url ?? '';
       if (url.includes('/api/auth/login') || url.includes('/api/auth/register')) {
-        return Promise.reject(buildApiError(error));
+        throw buildApiError(error);
       }
 
       const refreshToken = tokenStorage.getRefresh();
@@ -95,7 +95,7 @@ apiClient.interceptors.response.use(
       if (!refreshToken) {
         tokenStorage.clear();
         window.location.href = '/login';
-        return Promise.reject(buildApiError(error));
+        throw buildApiError(error);
       }
 
       if (isRefreshing) {
@@ -107,7 +107,7 @@ apiClient.interceptors.response.use(
             originalRequest.headers.Authorization = `Bearer ${token}`;
             return apiClient(originalRequest);
           })
-          .catch((err) => Promise.reject(err));
+          .catch((err) => { throw err; });
       }
 
       originalRequest._retry = true;
@@ -126,28 +126,44 @@ apiClient.interceptors.response.use(
         processQueue(refreshError, null);
         tokenStorage.clear();
         window.location.href = '/login';
-        return Promise.reject(refreshError);
+        throw refreshError;
       } finally {
         isRefreshing = false;
       }
     }
 
-    return Promise.reject(buildApiError(error));
+    throw buildApiError(error);
   },
 );
 
-function buildApiError(error: AxiosError): ApiError {
+export class CustomApiError extends Error implements ApiError {
+  detail?: string;
+  errors?: Record<string, string[]>;
+  status_code?: number;
+
+  constructor(message: string, detail?: string, errors?: Record<string, string[]>, status_code?: number) {
+    super(message);
+    this.name = 'CustomApiError';
+    this.detail = detail;
+    this.errors = errors;
+    this.status_code = status_code;
+    Object.setPrototypeOf(this, CustomApiError.prototype);
+  }
+}
+
+function buildApiError(error: AxiosError): CustomApiError {
   const data = error.response?.data as Record<string, unknown> | undefined;
-  return {
-    message:
-      (data?.detail as string) ??
-      (data?.message as string) ??
-      error.message ??
-      'An unexpected error occurred',
-    detail: data?.detail as string | undefined,
-    errors: data?.errors as Record<string, string[]> | undefined,
-    status_code: error.response?.status,
-  };
+  const message =
+    (data?.detail as string) ??
+    (data?.message as string) ??
+    error.message ??
+    'An unexpected error occurred';
+  return new CustomApiError(
+    message,
+    data?.detail as string | undefined,
+    data?.errors as Record<string, string[]> | undefined,
+    error.response?.status
+  );
 }
 
 export default apiClient;

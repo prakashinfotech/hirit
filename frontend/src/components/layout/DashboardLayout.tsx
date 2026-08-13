@@ -66,7 +66,7 @@ export default function DashboardLayout() {
               className="h-16 w-16 rounded-full object-cover"
             />
           ) : (
-            <span className="flex h-16 w-16 items-center justify-center rounded-full bg-[#f04e23] text-xl font-semibold text-white">
+            <span className="flex h-16 w-16 items-center justify-center rounded-full bg-[#2563eb] text-xl font-semibold text-white">
               {getInitials(fullName)}
             </span>
           )}
@@ -77,7 +77,7 @@ export default function DashboardLayout() {
                 'mt-1 inline-block rounded-full px-2 py-0.5 text-xs font-medium',
                 isEmployer
                   ? 'bg-blue-100 text-blue-700'
-                  : 'bg-orange-100 text-[#f04e23]',
+                  : 'bg-teal-100 text-[#2563eb]',
               )}
             >
               {roleBadgeLabel}
@@ -104,7 +104,7 @@ export default function DashboardLayout() {
                   cn(
                     'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
                     isActive
-                      ? 'bg-[#f04e23] text-white'
+                      ? 'bg-[#2563eb] text-white'
                       : 'text-[#1a1a2e] hover:bg-[#f5f5f5]',
                   )
                 }
@@ -141,20 +141,20 @@ export default function DashboardLayout() {
         {/* Sidebar logo */}
         <div className="flex h-16 items-center justify-between border-b border-[#e0e0e0] px-5">
           <Link to="/" className="flex items-center gap-0 focus:outline-none">
-            <span className="text-2xl font-black tracking-tight" style={{ color: '#f04e23' }}>f</span>
+            <span className="text-2xl font-black tracking-tight" style={{ color: '#2563eb' }}>h</span>
             <span
               className="text-2xl font-black tracking-tight"
               style={{
-                background: 'linear-gradient(90deg, #f04e23 0%, #a855f7 100%)',
+                background: 'linear-gradient(90deg, #2563eb 0%, #3b82f6 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
               }}
             >
-              ound
+              ir
             </span>
-            <span className="text-2xl font-black tracking-tight" style={{ color: '#7c3aed' }}>it</span>
-            <span className="inline-block h-2 w-2 translate-y-[-8px] rounded-full bg-[#f04e23]" />
+            <span className="text-2xl font-black tracking-tight text-brand-dark">it</span>
+            <span className="inline-block h-2 w-2 translate-y-[-8px] rounded-full bg-[#2563eb]" />
           </Link>
           <button
             type="button"
@@ -186,20 +186,20 @@ export default function DashboardLayout() {
       >
         <div className="flex h-16 items-center justify-between border-b border-[#e0e0e0] px-5">
           <Link to="/" className="flex items-center gap-0 focus:outline-none">
-            <span className="text-2xl font-black tracking-tight" style={{ color: '#f04e23' }}>f</span>
+            <span className="text-2xl font-black tracking-tight" style={{ color: '#2563eb' }}>h</span>
             <span
               className="text-2xl font-black tracking-tight"
               style={{
-                background: 'linear-gradient(90deg, #f04e23 0%, #a855f7 100%)',
+                background: 'linear-gradient(90deg, #2563eb 0%, #3b82f6 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
               }}
             >
-              ound
+              ir
             </span>
-            <span className="text-2xl font-black tracking-tight" style={{ color: '#7c3aed' }}>it</span>
-            <span className="inline-block h-2 w-2 translate-y-[-8px] rounded-full bg-[#f04e23]" />
+            <span className="text-2xl font-black tracking-tight text-brand-dark">it</span>
+            <span className="inline-block h-2 w-2 translate-y-[-8px] rounded-full bg-[#2563eb]" />
           </Link>
           <button
             type="button"
@@ -232,20 +232,20 @@ export default function DashboardLayout() {
             <Menu className="h-5 w-5" />
           </button>
           <Link to="/" className="flex items-center gap-0 focus:outline-none">
-            <span className="text-2xl font-black tracking-tight" style={{ color: '#f04e23' }}>f</span>
+            <span className="text-2xl font-black tracking-tight" style={{ color: '#2563eb' }}>h</span>
             <span
               className="text-2xl font-black tracking-tight"
               style={{
-                background: 'linear-gradient(90deg, #f04e23 0%, #a855f7 100%)',
+                background: 'linear-gradient(90deg, #2563eb 0%, #3b82f6 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
               }}
             >
-              ound
+              ir
             </span>
-            <span className="text-2xl font-black tracking-tight" style={{ color: '#7c3aed' }}>it</span>
-            <span className="inline-block h-2 w-2 translate-y-[-8px] rounded-full bg-[#f04e23]" />
+            <span className="text-2xl font-black tracking-tight text-brand-dark">it</span>
+            <span className="inline-block h-2 w-2 translate-y-[-8px] rounded-full bg-[#2563eb]" />
           </Link>
         </div>
 

@@ -158,7 +158,7 @@ export default function JobDetail() {
         <div className="pt-20 flex-1 flex flex-col items-center justify-center gap-3">
           <Briefcase className="w-12 h-12 text-gray-300" />
           <h2 className="text-xl font-semibold text-gray-700">Job not found</h2>
-          <Link to="/jobs" className="text-[#f04e23] hover:underline text-sm">
+          <Link to="/jobs" className="text-[#2563eb] hover:underline text-sm">
             Browse other jobs
           </Link>
         </div>
@@ -184,9 +184,9 @@ export default function JobDetail() {
         {/* ── Breadcrumb ── */}
         <div className="bg-white border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 text-sm text-gray-500 flex items-center gap-1.5">
-            <Link to="/" className="hover:text-[#f04e23]">Home</Link>
+            <Link to="/" className="hover:text-[#2563eb]">Home</Link>
             <span>/</span>
-            <Link to="/jobs" className="hover:text-[#f04e23]">Jobs</Link>
+            <Link to="/jobs" className="hover:text-[#2563eb]">Jobs</Link>
             <span>/</span>
             <span className="text-gray-800 font-medium truncate">{job.title}</span>
           </div>
@@ -214,7 +214,7 @@ export default function JobDetail() {
                         onError={() => setLogoError(true)}
                       />
                     ) : (
-                      <span className="text-xl font-bold text-[#f04e23]">
+                      <span className="text-xl font-bold text-[#2563eb]">
                         {getInitials(job.company?.name ?? '')}
                       </span>
                     )}
@@ -225,7 +225,7 @@ export default function JobDetail() {
                     <div className="flex items-center gap-2 mb-1.5">
                       <Link
                         to={`/company/${job.company?.id}`}
-                        className="text-sm font-semibold text-purple-700 hover:underline"
+                        className="text-sm font-semibold text-blue-700 hover:underline"
                       >
                         {job.company?.name}
                       </Link>
@@ -291,7 +291,7 @@ export default function JobDetail() {
                     className={`flex-1 sm:flex-none font-semibold px-10 py-3 rounded-lg transition-colors text-base shadow-sm ${
                       hasApplied 
                         ? 'bg-gray-200 text-gray-500 cursor-not-allowed' 
-                        : 'bg-[#f04e23] hover:bg-orange-600 text-white'
+                        : 'bg-[#2563eb] hover:bg-teal-700 text-white'
                     }`}
                   >
                     {hasApplied ? 'Applied' : 'Apply Now'}
@@ -300,8 +300,8 @@ export default function JobDetail() {
                     onClick={handleSaveToggle}
                     className={`inline-flex items-center gap-2 border rounded-lg px-5 py-3 font-medium text-sm transition-colors ${
                       isActuallySaved
-                        ? 'border-orange-300 bg-orange-50 text-orange-600'
-                        : 'border-gray-300 text-gray-700 hover:border-orange-300 hover:text-orange-500'
+                        ? 'border-teal-300 bg-teal-50 text-teal-600'
+                        : 'border-gray-300 text-gray-700 hover:border-teal-300 hover:text-teal-500'
                     }`}
                   >
                     <Heart className={`w-4 h-4 ${isActuallySaved ? 'fill-current' : ''}`} />
@@ -312,7 +312,7 @@ export default function JobDetail() {
                       navigator.clipboard.writeText(window.location.href);
                       toast.success('Link copied!');
                     }}
-                    className="inline-flex items-center gap-2 border border-gray-300 text-gray-600 hover:border-orange-300 hover:text-orange-500 rounded-lg px-4 py-3 transition-colors text-sm"
+                    className="inline-flex items-center gap-2 border border-gray-300 text-gray-600 hover:border-teal-300 hover:text-teal-500 rounded-lg px-4 py-3 transition-colors text-sm"
                   >
                     <Share2 className="w-4 h-4" /> Share
                   </button>
@@ -334,7 +334,7 @@ export default function JobDetail() {
                 {/* Job Description */}
                 <section>
                   <h2 className="text-lg font-bold text-[#1a1a2e] mb-4 flex items-center gap-2">
-                    <Layers className="w-5 h-5 text-[#f04e23]" />
+                    <Layers className="w-5 h-5 text-[#2563eb]" />
                     Job Description
                   </h2>
                   <div
@@ -347,7 +347,7 @@ export default function JobDetail() {
                 {job.requirements && (
                   <section className="border-t border-gray-100 pt-6">
                     <h2 className="text-lg font-bold text-[#1a1a2e] mb-4 flex items-center gap-2">
-                      <CheckCircle className="w-5 h-5 text-[#f04e23]" />
+                      <CheckCircle className="w-5 h-5 text-[#2563eb]" />
                       Requirements
                     </h2>
                     <div
@@ -361,7 +361,7 @@ export default function JobDetail() {
                 {job.skills_required && job.skills_required.length > 0 && (
                   <section className="border-t border-gray-100 pt-6">
                     <h2 className="text-lg font-bold text-[#1a1a2e] mb-4 flex items-center gap-2">
-                      <Award className="w-5 h-5 text-[#f04e23]" />
+                      <Award className="w-5 h-5 text-[#2563eb]" />
                       Skills Required
                     </h2>
                     <div className="flex flex-wrap gap-2">
@@ -375,7 +375,7 @@ export default function JobDetail() {
                 {/* About the Company */}
                 <section className="border-t border-gray-100 pt-6">
                   <h2 className="text-lg font-bold text-[#1a1a2e] mb-4 flex items-center gap-2">
-                    <Building2 className="w-5 h-5 text-[#f04e23]" />
+                    <Building2 className="w-5 h-5 text-[#2563eb]" />
                     About the Company
                   </h2>
                   <div className="flex items-start gap-4 mb-4">
@@ -387,7 +387,7 @@ export default function JobDetail() {
                           className="w-full h-full object-contain p-1"
                         />
                       ) : (
-                        <span className="text-lg font-bold text-[#f04e23]">
+                        <span className="text-lg font-bold text-[#2563eb]">
                           {getInitials(job.company?.name ?? '')}
                         </span>
                       )}
@@ -417,14 +417,14 @@ export default function JobDetail() {
                         href={job.company.website}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-sm text-[#f04e23] hover:underline"
+                        className="inline-flex items-center gap-1.5 text-sm text-[#2563eb] hover:underline"
                       >
                         <ExternalLink className="w-4 h-4" /> Visit Website
                       </a>
                     )}
                     <Link
                       to={`/company/${job.company?.id}`}
-                      className="text-sm font-medium text-purple-700 hover:underline"
+                      className="text-sm font-medium text-blue-700 hover:underline"
                     >
                       View All Jobs from {job.company?.name} &rarr;
                     </Link>
@@ -447,8 +447,8 @@ export default function JobDetail() {
                 <dl className="space-y-4">
                   {/* Published */}
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-orange-50 flex items-center justify-center flex-shrink-0">
-                      <Calendar className="w-4 h-4 text-[#f04e23]" />
+                    <div className="w-8 h-8 rounded-lg bg-teal-50 flex items-center justify-center flex-shrink-0">
+                      <Calendar className="w-4 h-4 text-[#2563eb]" />
                     </div>
                     <div>
                       <dt className="text-xs text-gray-500 font-medium">Published</dt>
@@ -475,8 +475,8 @@ export default function JobDetail() {
 
                   {/* Job Nature */}
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-purple-50 flex items-center justify-center flex-shrink-0">
-                      <Briefcase className="w-4 h-4 text-purple-600" />
+                    <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0">
+                      <Briefcase className="w-4 h-4 text-blue-600" />
                     </div>
                     <div>
                       <dt className="text-xs text-gray-500 font-medium">Job Nature</dt>
@@ -559,7 +559,7 @@ export default function JobDetail() {
                   className={`mt-6 w-full font-semibold py-3 rounded-lg transition-colors shadow-sm ${
                     hasApplied
                       ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
-                      : 'bg-[#f04e23] hover:bg-orange-600 text-white'
+                      : 'bg-[#2563eb] hover:bg-teal-700 text-white'
                   }`}
                 >
                   {hasApplied ? 'Applied' : 'Apply Now'}
@@ -579,7 +579,7 @@ export default function JobDetail() {
                         <Link
                           key={sj.id}
                           to={`/jobs/${sj.id}`}
-                          className="flex items-start gap-3 p-3 rounded-lg border border-gray-100 hover:border-orange-200 hover:bg-orange-50/30 transition-colors group"
+                          className="flex items-start gap-3 p-3 rounded-lg border border-gray-100 hover:border-teal-200 hover:bg-teal-50/30 transition-colors group"
                         >
                           <div className="w-10 h-10 rounded-lg bg-gray-50 border border-gray-100 flex items-center justify-center flex-shrink-0 overflow-hidden">
                             {sjLogoSrc ? (
@@ -592,13 +592,13 @@ export default function JobDetail() {
                                 }}
                               />
                             ) : (
-                              <span className="text-xs font-bold text-[#f04e23]">
+                              <span className="text-xs font-bold text-[#2563eb]">
                                 {getInitials(sj.company?.name ?? '')}
                               </span>
                             )}
                           </div>
                           <div className="min-w-0 flex-1">
-                            <p className="text-sm font-semibold text-[#1a1a2e] group-hover:text-[#f04e23] truncate transition-colors">
+                            <p className="text-sm font-semibold text-[#1a1a2e] group-hover:text-[#2563eb] truncate transition-colors">
                               {sj.title}
                             </p>
                             <p className="text-xs text-gray-500 truncate mt-0.5">{sj.company?.name}</p>
@@ -650,7 +650,7 @@ export default function JobDetail() {
                 onChange={(e) => setCoverLetter(e.target.value)}
                 rows={5}
                 placeholder="Tell the employer why you're the perfect fit..."
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm text-gray-800 resize-none focus:outline-none focus:border-[#f04e23] focus:ring-1 focus:ring-[#f04e23]"
+                className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm text-gray-800 resize-none focus:outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb]"
               />
             </div>
             <div className="flex gap-3">
@@ -663,7 +663,7 @@ export default function JobDetail() {
               <button
                 onClick={() => applyMutation.mutate()}
                 disabled={applyMutation.isPending}
-                className="flex-1 bg-[#f04e23] hover:bg-orange-600 text-white font-semibold py-3 rounded-lg transition-colors disabled:opacity-60"
+                className="flex-1 bg-[#2563eb] hover:bg-teal-700 text-white font-semibold py-3 rounded-lg transition-colors disabled:opacity-60"
               >
                 {applyMutation.isPending ? 'Submitting...' : 'Submit Application'}
               </button>

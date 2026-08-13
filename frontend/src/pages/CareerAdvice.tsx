@@ -118,7 +118,7 @@ const CATEGORY_COLORS: Record<Exclude<Category, 'All'>, string> = {
   'Interview Tips': 'bg-blue-100 text-blue-700',
   'Resume': 'bg-green-100 text-green-700',
   'Salary': 'bg-yellow-100 text-yellow-700',
-  'Career Growth': 'bg-purple-100 text-purple-700',
+  'Career Growth': 'bg-blue-100 text-blue-700',
   'Remote Work': 'bg-teal-100 text-teal-700',
 };
 
@@ -141,7 +141,7 @@ export default function CareerAdvice() {
       <div className="bg-[#1a1a2e] pt-24 pb-12 text-center">
         <div className="max-w-4xl mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-3">
-            Career <span className="text-[#f04e23]">Advice</span>
+            Career <span className="text-[#2563eb]">Advice</span>
           </h1>
           <p className="text-gray-300 text-lg">Expert tips, guides and insights to help you land your dream job</p>
         </div>
@@ -156,8 +156,8 @@ export default function CareerAdvice() {
               onClick={() => setActiveCategory(cat)}
               className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors ${
                 activeCategory === cat
-                  ? 'bg-[#f04e23] text-white'
-                  : 'bg-white text-gray-600 border border-gray-200 hover:border-orange-300 hover:text-orange-500'
+                  ? 'bg-[#2563eb] text-white'
+                  : 'bg-white text-gray-600 border border-gray-200 hover:border-teal-300 hover:text-teal-500'
               }`}
             >
               {cat}
@@ -173,7 +173,7 @@ export default function CareerAdvice() {
               {featured.map((article) => (
                 <div
                   key={article.id}
-                  className="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-md hover:border-orange-300 transition-all cursor-pointer group"
+                  className="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-md hover:border-teal-300 transition-all cursor-pointer group"
                 >
                   <div className="h-48 overflow-hidden">
                     <img
@@ -189,7 +189,7 @@ export default function CareerAdvice() {
                     <span className={`inline-block text-xs font-semibold px-2.5 py-0.5 rounded-full mb-3 ${CATEGORY_COLORS[article.category]}`}>
                       {article.category}
                     </span>
-                    <h3 className="font-bold text-[#1a1a2e] text-lg leading-snug mb-2 group-hover:text-[#f04e23] transition-colors">
+                    <h3 className="font-bold text-[#1a1a2e] text-lg leading-snug mb-2 group-hover:text-[#2563eb] transition-colors">
                       {article.title}
                     </h3>
                     <p className="text-sm text-gray-500 leading-relaxed mb-4 line-clamp-2">{article.excerpt}</p>
@@ -219,7 +219,7 @@ export default function CareerAdvice() {
               {displayedArticles.map((article) => (
                 <div
                   key={article.id}
-                  className="bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-md hover:border-orange-300 transition-all cursor-pointer group"
+                  className="bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-md hover:border-teal-300 transition-all cursor-pointer group"
                 >
                   <div className="h-36 overflow-hidden">
                     <img
@@ -235,13 +235,13 @@ export default function CareerAdvice() {
                     <span className={`inline-block text-xs font-semibold px-2 py-0.5 rounded-full mb-2 ${CATEGORY_COLORS[article.category]}`}>
                       {article.category}
                     </span>
-                    <h3 className="font-semibold text-[#1a1a2e] text-sm leading-snug mb-2 group-hover:text-[#f04e23] transition-colors line-clamp-2">
+                    <h3 className="font-semibold text-[#1a1a2e] text-sm leading-snug mb-2 group-hover:text-[#2563eb] transition-colors line-clamp-2">
                       {article.title}
                     </h3>
                     <p className="text-xs text-gray-500 leading-relaxed mb-3 line-clamp-2">{article.excerpt}</p>
                     <div className="flex items-center justify-between text-xs text-gray-400">
                       <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {article.readTime}</span>
-                      <span className="flex items-center gap-1 text-[#f04e23] font-medium">
+                      <span className="flex items-center gap-1 text-[#2563eb] font-medium">
                         Read <ArrowRight className="w-3 h-3" />
                       </span>
                     </div>
@@ -260,9 +260,9 @@ export default function CareerAdvice() {
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 px-4 py-3 rounded-lg text-sm text-gray-900 bg-white outline-none focus:ring-2 focus:ring-[#f04e23]"
+              className="flex-1 px-4 py-3 rounded-lg text-sm text-gray-900 bg-white outline-none focus:ring-2 focus:ring-[#2563eb]"
             />
-            <button className="bg-[#f04e23] hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-lg transition-colors text-sm whitespace-nowrap">
+            <button className="bg-[#2563eb] hover:bg-teal-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors text-sm whitespace-nowrap">
               Subscribe Free
             </button>
           </div>

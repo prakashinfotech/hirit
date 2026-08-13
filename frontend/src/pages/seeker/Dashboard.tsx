@@ -30,8 +30,8 @@ export default function SeekerDashboard() {
       label: 'Shortlisted',
       value: data?.shortlisted_applications ?? 0,
       icon: TrendingUp,
-      color: 'bg-orange-50 text-[#f04e23]',
-      border: 'border-orange-100',
+      color: 'bg-teal-50 text-[#2563eb]',
+      border: 'border-teal-100',
       link: '/dashboard/applied?status=shortlisted',
     },
     {
@@ -46,8 +46,8 @@ export default function SeekerDashboard() {
       label: 'Profile Views',
       value: 0,
       icon: Eye,
-      color: 'bg-purple-50 text-purple-600',
-      border: 'border-purple-100',
+      color: 'bg-blue-50 text-blue-600',
+      border: 'border-blue-100',
     },
   ];
 
@@ -126,7 +126,7 @@ export default function SeekerDashboard() {
           </div>
           <Link
             to="/dashboard/profile"
-            className="mt-5 w-full flex items-center justify-center gap-2 bg-[#f04e23] hover:bg-orange-600 text-white font-semibold py-2.5 rounded-lg transition-colors text-sm"
+            className="mt-5 w-full flex items-center justify-center gap-2 bg-[#2563eb] hover:bg-teal-700 text-white font-semibold py-2.5 rounded-lg transition-colors text-sm"
           >
             Complete Profile <ArrowRight className="w-4 h-4" />
           </Link>
@@ -136,7 +136,7 @@ export default function SeekerDashboard() {
         <div className="lg:col-span-2 bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
           <div className="flex items-center justify-between mb-4">
             <h2 className="font-bold text-[#1a1a2e]">Recent Applications</h2>
-            <Link to="/dashboard/applied" className="text-sm text-[#f04e23] hover:underline font-medium">
+            <Link to="/dashboard/applied" className="text-sm text-[#2563eb] hover:underline font-medium">
               View All
             </Link>
           </div>
@@ -147,7 +147,7 @@ export default function SeekerDashboard() {
             </div>
           ) : !data?.recent_applications?.length ? (
             <div className="text-center py-8 text-gray-400 text-sm">
-              No applications yet. <Link to="/jobs" className="text-[#f04e23] hover:underline">Find jobs</Link>
+              No applications yet. <Link to="/jobs" className="text-[#2563eb] hover:underline">Find jobs</Link>
             </div>
           ) : (
             <div className="overflow-x-auto">
@@ -164,7 +164,7 @@ export default function SeekerDashboard() {
                   {data.recent_applications.map((app) => (
                     <tr key={app.id} className="hover:bg-gray-50 transition-colors">
                       <td className="px-4 py-4 font-semibold text-[#1a1a2e] max-w-[140px] truncate">
-                        <Link to={`/jobs/${app.job_id ?? app.job?.id}`} className="hover:text-[#f04e23]">
+                        <Link to={`/jobs/${app.job_id ?? app.job?.id}`} className="hover:text-[#2563eb]">
                           {app.job?.title ?? '—'}
                         </Link>
                       </td>
@@ -191,7 +191,7 @@ export default function SeekerDashboard() {
         <div>
           <div className="flex items-center justify-between mb-4">
             <h2 className="font-bold text-[#1a1a2e] text-lg">Recommended for You</h2>
-            <Link to="/jobs" className="text-sm text-[#f04e23] hover:underline font-medium">
+            <Link to="/jobs" className="text-sm text-[#2563eb] hover:underline font-medium">
               Browse All
             </Link>
           </div>

@@ -48,7 +48,7 @@ function FilterSection({ title, children, defaultOpen = true }: FilterSectionPro
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex w-full items-center justify-between py-3 text-sm font-semibold text-[#1a1a2e] transition-colors hover:text-[#f04e23]"
+        className="flex w-full items-center justify-between py-3 text-sm font-semibold text-[#1a1a2e] transition-colors hover:text-[#2563eb]"
         aria-expanded={open}
       >
         {title}
@@ -119,7 +119,7 @@ export default function JobFilters({ filters, onChange, className }: JobFiltersP
           <button
             type="button"
             onClick={handleClearAll}
-            className="flex items-center gap-1 text-xs font-medium text-[#f04e23] transition-opacity hover:opacity-75"
+            className="flex items-center gap-1 text-xs font-medium text-[#2563eb] transition-opacity hover:opacity-75"
           >
             <X className="h-3.5 w-3.5" />
             Clear All
@@ -141,7 +141,7 @@ export default function JobFilters({ filters, onChange, className }: JobFiltersP
                 type="checkbox"
                 checked={checked}
                 onChange={(e) => handleJobTypeChange(value, e.target.checked)}
-                className="h-4 w-4 rounded border-gray-300 accent-[#f04e23]"
+                className="h-4 w-4 rounded border-gray-300 accent-[#2563eb]"
               />
               {label}
             </label>
@@ -163,7 +163,7 @@ export default function JobFilters({ filters, onChange, className }: JobFiltersP
                 experience_min: e.target.value !== '' ? Number(e.target.value) : undefined,
               })
             }
-            className="w-full rounded-lg border border-[#e0e0e0] px-3 py-2 text-sm text-[#1a1a2e] placeholder-gray-400 outline-none focus:border-[#f04e23] focus:ring-1 focus:ring-[#f04e23]"
+            className="w-full rounded-lg border border-[#e0e0e0] px-3 py-2 text-sm text-[#1a1a2e] placeholder-gray-400 outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb]"
           />
           <span className="shrink-0 text-xs text-gray-400">to</span>
           <input
@@ -177,7 +177,7 @@ export default function JobFilters({ filters, onChange, className }: JobFiltersP
                 experience_max: e.target.value !== '' ? Number(e.target.value) : undefined,
               })
             }
-            className="w-full rounded-lg border border-[#e0e0e0] px-3 py-2 text-sm text-[#1a1a2e] placeholder-gray-400 outline-none focus:border-[#f04e23] focus:ring-1 focus:ring-[#f04e23]"
+            className="w-full rounded-lg border border-[#e0e0e0] px-3 py-2 text-sm text-[#1a1a2e] placeholder-gray-400 outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb]"
           />
         </div>
       </FilterSection>
@@ -197,7 +197,7 @@ export default function JobFilters({ filters, onChange, className }: JobFiltersP
                 salary_min: e.target.value !== '' ? Number(e.target.value) * 100_000 : undefined,
               })
             }
-            className="w-full rounded-lg border border-[#e0e0e0] px-3 py-2 text-sm text-[#1a1a2e] placeholder-gray-400 outline-none focus:border-[#f04e23] focus:ring-1 focus:ring-[#f04e23]"
+            className="w-full rounded-lg border border-[#e0e0e0] px-3 py-2 text-sm text-[#1a1a2e] placeholder-gray-400 outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb]"
           />
           <span className="shrink-0 text-xs text-gray-400">–</span>
           <input
@@ -212,7 +212,7 @@ export default function JobFilters({ filters, onChange, className }: JobFiltersP
                 salary_max: e.target.value !== '' ? Number(e.target.value) * 100_000 : undefined,
               })
             }
-            className="w-full rounded-lg border border-[#e0e0e0] px-3 py-2 text-sm text-[#1a1a2e] placeholder-gray-400 outline-none focus:border-[#f04e23] focus:ring-1 focus:ring-[#f04e23]"
+            className="w-full rounded-lg border border-[#e0e0e0] px-3 py-2 text-sm text-[#1a1a2e] placeholder-gray-400 outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb]"
           />
         </div>
       </FilterSection>
@@ -224,7 +224,7 @@ export default function JobFilters({ filters, onChange, className }: JobFiltersP
           placeholder="e.g. Bangalore"
           value={filters.location ?? ''}
           onChange={(e) => update({ location: e.target.value || undefined })}
-          className="w-full rounded-lg border border-[#e0e0e0] px-3 py-2 text-sm text-[#1a1a2e] placeholder-gray-400 outline-none focus:border-[#f04e23] focus:ring-1 focus:ring-[#f04e23]"
+          className="w-full rounded-lg border border-[#e0e0e0] px-3 py-2 text-sm text-[#1a1a2e] placeholder-gray-400 outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb]"
         />
       </FilterSection>
 
@@ -233,7 +233,7 @@ export default function JobFilters({ filters, onChange, className }: JobFiltersP
         <select
           value={filters.category ?? ''}
           onChange={(e) => update({ category: e.target.value || undefined })}
-          className="w-full rounded-lg border border-[#e0e0e0] px-3 py-2 text-sm text-[#1a1a2e] outline-none focus:border-[#f04e23] focus:ring-1 focus:ring-[#f04e23]"
+          className="w-full rounded-lg border border-[#e0e0e0] px-3 py-2 text-sm text-[#1a1a2e] outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb]"
         >
           <option value="">All Categories</option>
           {dynamicCategories.map((cat) => (
@@ -260,7 +260,7 @@ export default function JobFilters({ filters, onChange, className }: JobFiltersP
                 name="date_posted"
                 checked={selected}
                 onChange={() => update({ ordering: value || undefined })}
-                className="h-4 w-4 accent-[#f04e23]"
+                className="h-4 w-4 accent-[#2563eb]"
               />
               {label}
             </label>

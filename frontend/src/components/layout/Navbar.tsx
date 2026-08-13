@@ -55,20 +55,20 @@ export default function Navbar() {
           className="flex shrink-0 items-center focus:outline-none mr-4"
           onClick={() => setMobileOpen(false)}
         >
-          <span className="text-2xl font-black tracking-tight" style={{ color: '#f04e23' }}>f</span>
+          <span className="text-2xl font-black tracking-tight" style={{ color: '#2563eb' }}>h</span>
           <span
             className="text-2xl font-black tracking-tight"
             style={{
-              background: 'linear-gradient(90deg, #f04e23 0%, #a855f7 100%)',
+              background: 'linear-gradient(90deg, #2563eb 0%, #3b82f6 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
             }}
           >
-            ound
+            ir
           </span>
-          <span className="text-2xl font-black tracking-tight" style={{ color: '#7c3aed' }}>it</span>
-          <span className="inline-block h-2 w-2 translate-y-[-8px] rounded-full bg-[#f04e23]" />
+          <span className="text-2xl font-black tracking-tight text-brand-dark">it</span>
+          <span className="inline-block h-2 w-2 translate-y-[-8px] rounded-full bg-[#2563eb]" />
         </Link>
 
         {/* Desktop Nav Links */}
@@ -79,8 +79,8 @@ export default function Navbar() {
               to={link.to}
               className={({ isActive }) =>
                 cn(
-                  'px-3 py-2 text-[15px] font-bold transition-colors hover:text-[#7c3aed]',
-                  isActive ? 'text-[#7c3aed]' : 'text-[#333333]',
+                  'px-3 py-2 text-[15px] font-bold transition-colors hover:text-[#2563eb]',
+                  isActive ? 'text-[#2563eb]' : 'text-[#333333]',
                 )
               }
             >
@@ -98,7 +98,7 @@ export default function Navbar() {
                 <button
                   type="button"
                   onClick={() => setDropdownOpen((v) => !v)}
-                  className="flex items-center gap-2 rounded-full border border-[#e0e0e0] px-3 py-1.5 text-sm font-medium text-[#333333] transition-colors hover:border-[#7c3aed] hover:text-[#7c3aed] focus:outline-none"
+                  className="flex items-center gap-2 rounded-full border border-[#e0e0e0] px-3 py-1.5 text-sm font-medium text-[#333333] transition-colors hover:border-[#2563eb] hover:text-[#2563eb] focus:outline-none"
                 >
                   {user.avatar_url ? (
                     <img
@@ -107,7 +107,7 @@ export default function Navbar() {
                       className="h-7 w-7 rounded-full object-cover"
                     />
                   ) : (
-                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#7c3aed] text-xs font-bold text-white">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#2563eb] text-xs font-bold text-white">
                       {getInitials(fullName)}
                     </span>
                   )}
@@ -129,7 +129,7 @@ export default function Navbar() {
                     <Link
                       to="/dashboard"
                       onClick={() => setDropdownOpen(false)}
-                      className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-[#333333] transition-colors hover:bg-[#f5f5f5] hover:text-[#7c3aed]"
+                      className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-[#333333] transition-colors hover:bg-[#f5f5f5] hover:text-[#2563eb]"
                     >
                       <LayoutDashboard className="h-4 w-4" />
                       My Dashboard
@@ -137,7 +137,7 @@ export default function Navbar() {
                     <Link
                       to="/dashboard/profile"
                       onClick={() => setDropdownOpen(false)}
-                      className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-[#333333] transition-colors hover:bg-[#f5f5f5] hover:text-[#7c3aed]"
+                      className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-[#333333] transition-colors hover:bg-[#f5f5f5] hover:text-[#2563eb]"
                     >
                       <User className="h-4 w-4" />
                       My Profile
@@ -145,7 +145,7 @@ export default function Navbar() {
                     <Link
                       to="/dashboard/applied"
                       onClick={() => setDropdownOpen(false)}
-                      className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-[#333333] transition-colors hover:bg-[#f5f5f5] hover:text-[#7c3aed]"
+                      className="flex items-center gap-2.5 px-4 py-2.5 text-sm text-[#333333] transition-colors hover:bg-[#f5f5f5] hover:text-[#2563eb]"
                     >
                       <Briefcase className="h-4 w-4" />
                       Applied Jobs
@@ -169,7 +169,7 @@ export default function Navbar() {
               {/* Login button — outline, purple text, user icon */}
               <Link
                 to="/login"
-                className="flex items-center gap-1.5 rounded-full border border-[#7c3aed] px-5 py-2 text-[14px] font-semibold text-[#7c3aed] transition-colors hover:bg-purple-50"
+                className="flex items-center gap-1.5 rounded-full border border-[#2563eb] px-5 py-2 text-[14px] font-semibold text-[#2563eb] transition-colors hover:bg-blue-50"
               >
                 <User className="h-4 w-4" />
                 Login
@@ -177,7 +177,7 @@ export default function Navbar() {
               {/* Register button — orange fill with icon */}
               <Link
                 to="/register"
-                className="flex items-center gap-1.5 rounded-full bg-[#f04e23] px-5 py-2 text-[14px] font-semibold text-white transition-opacity hover:opacity-90 shadow-sm"
+                className="flex items-center gap-1.5 rounded-full bg-[#2563eb] px-5 py-2 text-[14px] font-semibold text-white transition-opacity hover:opacity-90 shadow-sm"
               >
                 <User className="h-4 w-4" />
                 Register
@@ -185,7 +185,7 @@ export default function Navbar() {
               {/* Employers Login — plain text link */}
               <a
                 href="/employer/dashboard"
-                className="text-[14px] font-bold text-[#333333] transition-colors hover:text-[#7c3aed] ml-2 border-l border-gray-300 pl-4"
+                className="text-[14px] font-bold text-[#333333] transition-colors hover:text-[#2563eb] ml-2 border-l border-gray-300 pl-4"
               >
                 Employers Login
               </a>
@@ -217,7 +217,7 @@ export default function Navbar() {
                   cn(
                     'rounded-md px-3 py-2.5 text-sm font-medium transition-colors',
                     isActive
-                      ? 'bg-purple-50 text-[#7c3aed]'
+                      ? 'bg-blue-50 text-[#2563eb]'
                       : 'text-[#333333] hover:bg-[#f5f5f5]',
                   )
                 }
@@ -244,7 +244,7 @@ export default function Navbar() {
                     className="h-10 w-10 rounded-full object-cover"
                   />
                 ) : (
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#7c3aed] text-sm font-bold text-white">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#2563eb] text-sm font-bold text-white">
                     {getInitials(fullName)}
                   </span>
                 )}
@@ -283,7 +283,7 @@ export default function Navbar() {
               <Link
                 to="/login"
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-center gap-1.5 rounded-md border border-[#7c3aed] px-4 py-2.5 text-center text-sm font-semibold text-[#7c3aed] hover:bg-purple-50"
+                className="flex items-center justify-center gap-1.5 rounded-md border border-[#2563eb] px-4 py-2.5 text-center text-sm font-semibold text-[#2563eb] hover:bg-blue-50"
               >
                 <User className="h-4 w-4" />
                 Login
@@ -291,7 +291,7 @@ export default function Navbar() {
               <Link
                 to="/register"
                 onClick={() => setMobileOpen(false)}
-                className="rounded-md bg-[#f04e23] px-4 py-2.5 text-center text-sm font-semibold text-white hover:opacity-90"
+                className="rounded-md bg-[#2563eb] px-4 py-2.5 text-center text-sm font-semibold text-white hover:opacity-90"
               >
                 Register
               </Link>

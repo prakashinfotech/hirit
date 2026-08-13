@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { ChevronLeft, ChevronRight, Search } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Search, Sparkles, Briefcase, ShieldCheck, TrendingUp, Check } from 'lucide-react';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import SearchBar from '../components/jobs/SearchBar';
@@ -73,7 +73,7 @@ const VACANCY_DATA: Record<VacancyTab, string[]> = {
 // Tries Clearbit first; if unavailable shows a brand-coloured badge.
 // Inner 123×54 div prevents max-w/max-h resolving to the outer padded dimension.
 
-function CompanyLogo({ company }: { company: Company }) {
+function CompanyLogo({ company }: Readonly<{ company: Company }>) {
   const [imgUrl, setImgUrl] = useState(company.logoUrl);
   const [failedLevel, setFailedLevel] = useState(0);
 
@@ -126,7 +126,7 @@ function CompanyLogo({ company }: { company: Company }) {
 
 // ─── HorizontalScrollRow ──────────────────────────────────────────────────────
 
-function HorizontalScrollRow({ label, items }: { label: string; items: string[] }) {
+function HorizontalScrollRow({ label, items }: Readonly<{ label: string; items: readonly string[] }>) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scroll = (dir: 'left' | 'right') => {
@@ -138,7 +138,7 @@ function HorizontalScrollRow({ label, items }: { label: string; items: string[] 
       <span className="shrink-0 text-sm font-bold text-[#333333] min-w-[160px]">{label}</span>
 
       <button type="button" onClick={() => scroll('left')} aria-label="Scroll left"
-        className="shrink-0 flex h-7 w-7 items-center justify-center rounded-full border border-[#e0e0e0] bg-white text-[#666666] hover:border-[#7c3aed] hover:text-[#7c3aed] transition-colors">
+        className="shrink-0 flex h-7 w-7 items-center justify-center rounded-full border border-[#e0e0e0] bg-white text-[#666666] hover:border-[#2563eb] hover:text-[#2563eb] transition-colors">
         <ChevronLeft className="h-4 w-4" />
       </button>
 
@@ -146,14 +146,14 @@ function HorizontalScrollRow({ label, items }: { label: string; items: string[] 
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
         {items.map((item) => (
           <Link key={item} to={`/jobs?q=${encodeURIComponent(item)}`}
-            className="shrink-0 rounded-full border border-[#e0e0e0] bg-white px-4 py-1.5 text-sm text-[#333333] hover:border-[#7c3aed] hover:text-[#7c3aed] transition-colors whitespace-nowrap">
+            className="shrink-0 rounded-full border border-[#e0e0e0] bg-white px-4 py-1.5 text-sm text-[#333333] hover:border-[#2563eb] hover:text-[#2563eb] transition-colors whitespace-nowrap">
             {item}
           </Link>
         ))}
       </div>
 
       <button type="button" onClick={() => scroll('right')} aria-label="Scroll right"
-        className="shrink-0 flex h-7 w-7 items-center justify-center rounded-full border border-[#e0e0e0] bg-white text-[#666666] hover:border-[#7c3aed] hover:text-[#7c3aed] transition-colors">
+        className="shrink-0 flex h-7 w-7 items-center justify-center rounded-full border border-[#e0e0e0] bg-white text-[#666666] hover:border-[#2563eb] hover:text-[#2563eb] transition-colors">
         <ChevronRight className="h-4 w-4" />
       </button>
     </div>
@@ -199,37 +199,83 @@ export default function Home() {
       <Navbar />
 
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden pt-[60px]" style={{ background: 'linear-gradient(to bottom, #fcfaff 0%, #ffffff 100%)' }}>
-        <div className="relative max-w-7xl mx-auto px-4 flex items-center justify-center" style={{ minHeight: '320px' }}>
-          {/* Decorative left - Man Image */}
-          <div className="absolute left-4 bottom-0 hidden xl:flex items-end h-[280px] pointer-events-none" aria-hidden="true">
-            <img 
-              src="/hero_man.png" 
-              alt="Excited professional" 
-              className="h-full object-contain"
-            />
+      <section className="relative overflow-hidden pt-[60px]" style={{ background: 'linear-gradient(to bottom, #eff6ff 0%, #ffffff 100%)' }}>
+        <div className="relative max-w-7xl mx-auto px-4 flex items-center justify-center w-full" style={{ minHeight: '340px' }}>
+          {/* Decorative Grid Lines & Moving Particles */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden select-none opacity-40">
+            {/* Grid overlay */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+            
+            {/* Floating glowing orbs */}
+            <div className="absolute left-[8%] top-[15%] w-60 h-60 rounded-full bg-blue-300/30 blur-[70px] animate-pulse duration-[8s] infinite" />
+            <div className="absolute right-[8%] top-[10%] w-72 h-72 rounded-full bg-teal-300/20 blur-[80px] animate-pulse duration-[10s] infinite" />
+            
+            {/* Orbiting ring 1 */}
+            <div className="absolute left-[12%] top-[35%] w-24 h-24 rounded-full border border-blue-200/40 flex items-center justify-center animate-[spin_20s_linear_infinite]">
+              <div className="w-3.5 h-3.5 rounded-full bg-blue-500 absolute -top-1.5 animate-ping" />
+              <div className="w-2.5 h-2.5 rounded-full bg-blue-600 absolute -top-1.25" />
+            </div>
+
+            {/* Orbiting ring 2 */}
+            <div className="absolute right-[14%] top-[25%] w-32 h-32 rounded-full border border-teal-200/40 flex items-center justify-center animate-[spin_25s_linear_infinite]">
+              <div className="w-3.5 h-3.5 rounded-full bg-teal-500 absolute -bottom-1.5 animate-ping" />
+              <div className="w-2.5 h-2.5 rounded-full bg-teal-600 absolute -bottom-1.25" />
+            </div>
+          </div>
+
+          {/* Left Decorative Floating Widget */}
+          <div className="absolute left-[3%] top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-center z-10 animate-float-slow select-none">
+            <div className="absolute w-44 h-44 rounded-full bg-blue-300/30 blur-2xl -z-10" />
+            <div className="bg-white/90 backdrop-blur-md border border-white/60 rounded-2xl p-4 shadow-[0_15px_30px_rgba(37,99,235,0.06)] flex flex-col gap-3 w-[220px]">
+              <p className="text-[9px] font-bold tracking-wider text-gray-400 uppercase text-left">Growth Index</p>
+              <div className="flex items-center gap-3">
+                <div className="shrink-0 bg-blue-50/50 p-1.5 rounded-xl border border-blue-100">
+                  <svg className="w-12 h-8 text-[#2563eb]" viewBox="0 0 100 40" fill="none">
+                    <path d="M5,35 Q25,25 45,30 T85,10" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+                    <circle cx="85" cy="10" r="4.5" fill="#2563eb" className="animate-ping" />
+                    <circle cx="85" cy="10" r="3" fill="#1d4ed8" />
+                  </svg>
+                </div>
+                <div className="text-left">
+                  <p className="text-xs font-black text-[#1a1a2e]">+12.4% Growth</p>
+                  <p className="text-[9px] text-gray-500 font-medium">New roles today</p>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Center content */}
           <div className="flex flex-col items-center text-center py-14 w-full max-w-3xl z-10">
-            <h1 className="text-4xl md:text-[44px] font-black leading-tight mb-3" style={{ color: '#7b1fa2', letterSpacing: '-0.02em' }}>
-              8,00,000+ Jobs In India
+            <h1 className="text-4xl md:text-[44px] font-black leading-tight mb-3" style={{ color: '#1d4ed8', letterSpacing: '-0.02em' }}>
+              Find Your Dream Career Today
             </h1>
             <p className="text-[#1a1a2e] font-bold mb-10 text-[18px]">
-              Get Hired by Top Companies
+              Discover verified jobs, match your profile, and connect with top companies.
             </p>
             <div className="w-full relative z-20 shadow-[0_8px_30px_rgb(0,0,0,0.08)] rounded-full">
               <SearchBar size="lg" />
             </div>
           </div>
 
-          {/* Decorative right - Cricket Image */}
-          <div className="absolute right-4 bottom-0 hidden xl:flex items-end h-[260px] pointer-events-none" aria-hidden="true">
-             <img 
-              src="/hero_cricket.png" 
-              alt="Cricket stumps" 
-              className="h-full object-contain"
-            />
+          {/* Right Decorative Floating Widget */}
+          <div className="absolute right-[3%] top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-center z-10 animate-float-slower select-none">
+            <div className="absolute w-44 h-44 rounded-full bg-teal-300/20 blur-2xl -z-10" />
+            <div className="bg-white/90 backdrop-blur-md border border-white/60 rounded-2xl p-4 shadow-[0_15px_30px_rgba(13,148,136,0.06)] flex flex-col gap-3 w-[220px]">
+              <p className="text-[9px] font-bold tracking-wider text-gray-400 uppercase text-left">Match Score</p>
+              <div className="flex items-center gap-3">
+                <div className="shrink-0 bg-teal-50/50 p-1.5 rounded-xl border border-teal-100">
+                  <svg className="w-12 h-8 text-teal-600" viewBox="0 0 100 40" fill="none">
+                    <circle cx="20" cy="20" r="5" fill="currentColor" />
+                    <circle cx="80" cy="20" r="5" fill="currentColor" />
+                    <line x1="28" y1="20" x2="72" y2="20" stroke="currentColor" strokeWidth="2.5" strokeDasharray="4,4" className="animate-pulse" />
+                  </svg>
+                </div>
+                <div className="text-left">
+                  <p className="text-xs font-black text-[#1a1a2e]">98% Suitability</p>
+                  <p className="text-[9px] text-gray-500 font-medium">Auto-matched with HR</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -245,7 +291,7 @@ export default function Home() {
               type="button"
               onClick={() => scrollCompanies('left')}
               aria-label="Scroll left"
-              className="shrink-0 flex h-9 w-9 items-center justify-center rounded-full border border-[#e0e0e0] bg-white shadow-sm text-[#666666] hover:border-[#7c3aed] hover:text-[#7c3aed] transition-colors"
+              className="shrink-0 flex h-9 w-9 items-center justify-center rounded-full border border-[#e0e0e0] bg-white shadow-sm text-[#666666] hover:border-[#2563eb] hover:text-[#2563eb] transition-colors"
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
@@ -274,7 +320,7 @@ export default function Home() {
               type="button"
               onClick={() => scrollCompanies('right')}
               aria-label="Scroll right"
-              className="shrink-0 flex h-9 w-9 items-center justify-center rounded-full border border-[#e0e0e0] bg-white shadow-sm text-[#666666] hover:border-[#7c3aed] hover:text-[#7c3aed] transition-colors"
+              className="shrink-0 flex h-9 w-9 items-center justify-center rounded-full border border-[#e0e0e0] bg-white shadow-sm text-[#666666] hover:border-[#2563eb] hover:text-[#2563eb] transition-colors"
             >
               <ChevronRight className="h-5 w-5" />
             </button>
@@ -307,7 +353,7 @@ export default function Home() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mb-6 flex items-center justify-between">
               <h2 className="text-xl font-bold text-[#1a1a2e]">Featured Jobs</h2>
-              <Link to="/jobs" className="text-sm font-medium text-[#7c3aed] hover:underline">
+              <Link to="/jobs" className="text-sm font-medium text-[#2563eb] hover:underline">
                 View all jobs &rsaquo;
               </Link>
             </div>
@@ -337,7 +383,7 @@ export default function Home() {
                 <button key={tab} type="button" onClick={() => setActiveTab(tab)}
                   className={`shrink-0 pb-3 text-sm font-medium transition-colors ${
                     activeTab === tab
-                      ? 'border-b-2 border-[#7c3aed] text-[#7c3aed]'
+                      ? 'border-b-2 border-[#2563eb] text-[#2563eb]'
                       : 'text-[#666666] hover:text-[#333333]'
                   }`}
                   style={activeTab === tab ? { marginBottom: '-1px' } : {}}>
@@ -349,13 +395,13 @@ export default function Home() {
             <div className="flex flex-wrap gap-2 mb-5">
               {VACANCY_DATA[activeTab].map((item) => (
                 <Link key={item} to={`/jobs?q=${encodeURIComponent(item)}`}
-                  className="rounded-full border border-[#e0e0e0] px-4 py-1.5 text-sm text-[#333333] hover:border-[#7c3aed] hover:text-[#7c3aed] transition-colors bg-white">
+                  className="rounded-full border border-[#e0e0e0] px-4 py-1.5 text-sm text-[#333333] hover:border-[#2563eb] hover:text-[#2563eb] transition-colors bg-white">
                   {item}
                 </Link>
               ))}
             </div>
 
-            <Link to="/jobs" className="text-sm font-medium text-[#7c3aed] hover:underline">
+            <Link to="/jobs" className="text-sm font-medium text-[#2563eb] hover:underline">
               View all jobs by {activeTab} &rsaquo;
             </Link>
           </div>
@@ -367,13 +413,13 @@ export default function Home() {
         <section className="bg-white py-10 border-t border-[#e5e7eb]">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col items-center justify-center py-12">
-              <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-purple-50">
-                <Search className="h-7 w-7 text-[#7c3aed]" />
+              <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-50">
+                <Search className="h-7 w-7 text-[#2563eb]" />
               </div>
               <p className="text-base font-medium text-[#333333]">No featured jobs at the moment</p>
               <p className="mt-1 text-sm text-[#666666]">Check back later or browse all jobs</p>
               <Link to="/jobs"
-                className="mt-4 inline-flex items-center gap-2 rounded-lg bg-[#7c3aed] px-6 py-2.5 text-sm font-semibold text-white hover:opacity-90">
+                className="mt-4 inline-flex items-center gap-2 rounded-lg bg-[#2563eb] px-6 py-2.5 text-sm font-semibold text-white hover:opacity-90">
                 Browse All Jobs
               </Link>
             </div>

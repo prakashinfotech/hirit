@@ -73,7 +73,7 @@ function NoJobsFound({ onClear, keyword }: { onClear: () => void; keyword?: stri
       <button
         type="button"
         onClick={onClear}
-        className="inline-flex items-center gap-2 rounded-lg bg-[#f04e23] px-6 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f04e23] focus-visible:ring-offset-2"
+        className="inline-flex items-center gap-2 rounded-lg bg-[#2563eb] px-6 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb] focus-visible:ring-offset-2"
       >
         <X className="w-4 h-4" />
         Clear Filters
@@ -119,7 +119,7 @@ function Pagination({
       <button
         onClick={() => onPageChange(page - 1)}
         disabled={page === 1}
-        className="px-4 py-2 rounded-lg border border-[#e0e0e0] text-sm font-medium text-[#333333] bg-white hover:border-[#7c3aed] hover:text-[#7c3aed] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+        className="px-4 py-2 rounded-lg border border-[#e0e0e0] text-sm font-medium text-[#333333] bg-white hover:border-[#2563eb] hover:text-[#2563eb] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
       >
         Previous
       </button>
@@ -136,8 +136,8 @@ function Pagination({
             aria-current={p === page ? 'page' : undefined}
             className={`w-10 h-10 rounded-lg text-sm font-medium transition-colors ${
               p === page
-                ? 'bg-[#7c3aed] text-white border border-[#7c3aed]'
-                : 'border border-[#e0e0e0] bg-white text-[#333333] hover:border-[#7c3aed] hover:text-[#7c3aed]'
+                ? 'bg-[#2563eb] text-white border border-[#2563eb]'
+                : 'border border-[#e0e0e0] bg-white text-[#333333] hover:border-[#2563eb] hover:text-[#2563eb]'
             }`}
           >
             {p}
@@ -148,7 +148,7 @@ function Pagination({
       <button
         onClick={() => onPageChange(page + 1)}
         disabled={page === totalPages}
-        className="px-4 py-2 rounded-lg border border-[#e0e0e0] text-sm font-medium text-[#333333] bg-white hover:border-[#7c3aed] hover:text-[#7c3aed] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+        className="px-4 py-2 rounded-lg border border-[#e0e0e0] text-sm font-medium text-[#333333] bg-white hover:border-[#2563eb] hover:text-[#2563eb] transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
       >
         Next
       </button>
@@ -294,11 +294,11 @@ export default function JobSearch() {
                   <button
                     type="button"
                     onClick={clearAllFilters}
-                    className="flex items-center gap-1 text-xs font-semibold text-[#7c3aed] hover:text-purple-800 transition-colors"
+                    className="flex items-center gap-1 text-xs font-semibold text-[#2563eb] hover:text-blue-800 transition-colors"
                   >
                     <X className="w-3.5 h-3.5" />
                     Clear All
-                    <span className="ml-0.5 inline-flex items-center justify-center w-4 h-4 rounded-full bg-[#7c3aed] text-white text-[10px] font-bold">
+                    <span className="ml-0.5 inline-flex items-center justify-center w-4 h-4 rounded-full bg-[#2563eb] text-white text-[10px] font-bold">
                       {activeFilterCount}
                     </span>
                   </button>
@@ -326,12 +326,12 @@ export default function JobSearch() {
                 <button
                   type="button"
                   onClick={() => setShowMobileFilters(true)}
-                  className="lg:hidden flex items-center gap-1.5 text-sm font-medium text-[#333333] border border-[#e0e0e0] rounded-lg px-3 py-1.5 hover:border-[#7c3aed] hover:text-[#7c3aed] transition-colors"
+                  className="lg:hidden flex items-center gap-1.5 text-sm font-medium text-[#333333] border border-[#e0e0e0] rounded-lg px-3 py-1.5 hover:border-[#2563eb] hover:text-[#2563eb] transition-colors"
                 >
                   <SlidersHorizontal className="w-4 h-4" />
                   Filters
                   {activeFilterCount > 0 && (
-                    <span className="inline-flex items-center justify-center w-4 h-4 rounded-full bg-[#7c3aed] text-white text-[10px] font-bold">
+                    <span className="inline-flex items-center justify-center w-4 h-4 rounded-full bg-[#2563eb] text-white text-[10px] font-bold">
                       {activeFilterCount}
                     </span>
                   )}
@@ -368,7 +368,7 @@ export default function JobSearch() {
                 <select
                   value={ordering}
                   onChange={(e) => setOrdering(e.target.value)}
-                  className="border border-[#e0e0e0] rounded-lg px-3 py-1.5 text-sm text-[#333333] bg-white focus:outline-none focus:border-[#7c3aed] focus:ring-1 focus:ring-[#7c3aed] cursor-pointer"
+                  className="border border-[#e0e0e0] rounded-lg px-3 py-1.5 text-sm text-[#333333] bg-white focus:outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb] cursor-pointer"
                 >
                   <option value="">Relevance</option>
                   <option value="-created_at">Newest First</option>
@@ -389,7 +389,7 @@ export default function JobSearch() {
             ) : isError ? (
               <div className="flex flex-col items-center justify-center py-20 text-center bg-white rounded-xl border border-[#e0e0e0]">
                 <p className="text-gray-500 text-sm mb-4">Something went wrong loading jobs. Please try again.</p>
-                <button type="button" onClick={() => window.location.reload()} className="cursor-pointer rounded-lg bg-[#f04e23] px-5 py-2 text-sm font-semibold text-white hover:opacity-90">
+                <button type="button" onClick={() => window.location.reload()} className="cursor-pointer rounded-lg bg-[#2563eb] px-5 py-2 text-sm font-semibold text-white hover:opacity-90">
                   Retry
                 </button>
               </div>
@@ -437,7 +437,7 @@ export default function JobSearch() {
               <div className="flex items-center gap-2">
                 <h3 className="font-bold text-base text-[#1a1a2e]">Filters</h3>
                 {activeFilterCount > 0 && (
-                  <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#7c3aed] text-white text-[10px] font-bold">
+                  <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#2563eb] text-white text-[10px] font-bold">
                     {activeFilterCount}
                   </span>
                 )}
@@ -447,7 +447,7 @@ export default function JobSearch() {
                   <button
                     type="button"
                     onClick={() => { clearAllFilters(); setShowMobileFilters(false); }}
-                    className="text-xs font-semibold text-[#7c3aed] hover:text-purple-800 transition-colors"
+                    className="text-xs font-semibold text-[#2563eb] hover:text-blue-800 transition-colors"
                   >
                     Clear All
                   </button>
@@ -480,7 +480,7 @@ export default function JobSearch() {
               <button
                 type="button"
                 onClick={() => setShowMobileFilters(false)}
-                className="w-full rounded-lg bg-[#f04e23] py-2.5 text-sm font-bold text-white hover:opacity-90 transition-opacity"
+                className="w-full rounded-lg bg-[#2563eb] py-2.5 text-sm font-bold text-white hover:opacity-90 transition-opacity"
               >
                 Show {totalCount.toLocaleString('en-IN')} Jobs
               </button>

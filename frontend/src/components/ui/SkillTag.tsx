@@ -28,7 +28,7 @@ export default function SkillTag({
   return (
     <span
       className={cn(
-        'inline-flex items-center gap-1 rounded-full border border-[#f04e23]/40 bg-orange-50 px-2.5 py-0.5 text-xs font-medium text-[#f04e23]',
+        'inline-flex items-center gap-1 rounded-full border border-[#2563eb]/40 bg-teal-50 px-2.5 py-0.5 text-xs font-medium text-[#2563eb]',
         className,
       )}
     >
@@ -38,7 +38,7 @@ export default function SkillTag({
           type="button"
           onClick={onRemove}
           aria-label={`Remove skill ${label}`}
-          className="ml-0.5 flex h-3.5 w-3.5 items-center justify-center rounded-full text-[#f04e23]/70 transition-colors hover:bg-[#f04e23] hover:text-white"
+          className="ml-0.5 flex h-3.5 w-3.5 items-center justify-center rounded-full text-[#2563eb]/70 transition-colors hover:bg-[#2563eb] hover:text-white"
         >
           <X className="h-2.5 w-2.5" />
         </button>

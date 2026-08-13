@@ -54,9 +54,9 @@ export default function JobCategories() {
         <Link
           key={name}
           to={`/jobs?category=${slug}`}
-          className="group flex items-center gap-2.5 rounded-lg border border-[#e5e7eb] bg-white px-3 py-3 text-sm font-medium text-[#333333] transition-all duration-200 hover:border-[#7c3aed] hover:text-[#7c3aed] hover:shadow-sm"
+          className="group flex items-center gap-2.5 rounded-lg border border-[#e5e7eb] bg-white px-3 py-3 text-sm font-medium text-[#333333] transition-all duration-200 hover:border-[#2563eb] hover:text-[#2563eb] hover:shadow-sm"
         >
-          <Icon className="h-4 w-4 shrink-0 text-[#f04e23] transition-colors group-hover:text-[#7c3aed]" />
+          <Icon className="h-4 w-4 shrink-0 text-[#2563eb] transition-colors group-hover:text-[#2563eb]" />
           <span className="leading-tight">{name}</span>
         </Link>
       ))}

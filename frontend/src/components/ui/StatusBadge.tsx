@@ -22,11 +22,11 @@ const STATUS_CONFIG: Record<ApplicationStatus, StatusConfig> = {
   },
   [ApplicationStatus.SHORTLISTED]: {
     label: 'Shortlisted',
-    className: 'bg-orange-100 text-[#f04e23] border border-orange-200',
+    className: 'bg-teal-100 text-[#2563eb] border border-teal-200',
   },
   [ApplicationStatus.INTERVIEW_SCHEDULED]: {
     label: 'Interview',
-    className: 'bg-purple-100 text-purple-700 border border-purple-200',
+    className: 'bg-blue-100 text-blue-700 border border-blue-200',
   },
   [ApplicationStatus.OFFERED]: {
     label: 'Offered',

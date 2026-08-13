@@ -49,7 +49,7 @@ export default function EmptyState({
         <button
           type="button"
           onClick={onAction}
-          className="rounded-md bg-[#f04e23] px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f04e23] focus-visible:ring-offset-2"
+          className="rounded-md bg-[#2563eb] px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb] focus-visible:ring-offset-2"
         >
           {actionLabel}
         </button>

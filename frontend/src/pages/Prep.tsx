@@ -7,7 +7,7 @@ const TOPICS = [
     icon: Brain,
     title: 'Behavioural & HR',
     questions: ['Tell me about yourself', 'Where do you see yourself in 5 years?', 'What is your greatest weakness?'],
-    color: 'bg-purple-50 text-[#7c3aed]',
+    color: 'bg-blue-50 text-[#2563eb]',
     count: '120+ questions',
   },
   {
@@ -28,7 +28,7 @@ const TOPICS = [
     icon: Building2,
     title: 'Company-Specific Prep',
     questions: ['TCS, Infosys, Wipro patterns', 'Google, Amazon, Flipkart', 'Startup interview rounds'],
-    color: 'bg-orange-50 text-[#f04e23]',
+    color: 'bg-teal-50 text-[#2563eb]',
     count: '50+ companies',
   },
   {
@@ -62,7 +62,7 @@ export default function Prep() {
       {/* Hero */}
       <div className="bg-white border-b border-[#e0e0e0] pt-[60px]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 text-center">
-          <span className="inline-block rounded-full bg-purple-50 px-4 py-1 text-xs font-semibold text-[#7c3aed] mb-4">
+          <span className="inline-block rounded-full bg-blue-50 px-4 py-1 text-xs font-semibold text-[#2563eb] mb-4">
             Interview Prep
           </span>
           <h1 className="text-4xl font-extrabold text-[#1a1a2e] mb-4">
@@ -103,7 +103,7 @@ export default function Prep() {
                 </ul>
                 <button
                   type="button"
-                  className="cursor-pointer mt-4 w-full rounded-lg bg-[#7c3aed] py-2 text-xs font-semibold text-white hover:opacity-90 transition-opacity"
+                  className="cursor-pointer mt-4 w-full rounded-lg bg-[#2563eb] py-2 text-xs font-semibold text-white hover:opacity-90 transition-opacity"
                 >
                   Start Practising
                 </button>

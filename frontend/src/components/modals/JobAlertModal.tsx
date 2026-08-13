@@ -154,8 +154,8 @@ export default function JobAlertModal({
           {/* Header */}
           <div className="flex items-center justify-between border-b border-[#e0e0e0] px-6 py-5">
             <div className="flex items-center gap-2">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-orange-100">
-                <Bell className="h-4 w-4 text-[#f04e23]" />
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-teal-100">
+                <Bell className="h-4 w-4 text-[#2563eb]" />
               </span>
               <Dialog.Title className="text-base font-bold text-[#1a1a2e]">
                 Create Job Alert
@@ -179,7 +179,7 @@ export default function JobAlertModal({
               {/* Alert name */}
               <div>
                 <label htmlFor="alert-name" className="mb-1 block text-sm font-medium text-[#1a1a2e]">
-                  Alert Name <span className="text-[#f04e23]">*</span>
+                  Alert Name <span className="text-[#2563eb]">*</span>
                 </label>
                 <input
                   id="alert-name"
@@ -191,7 +191,7 @@ export default function JobAlertModal({
                     'w-full rounded-lg border px-3 py-2.5 text-sm text-[#1a1a2e] placeholder-gray-400 outline-none transition',
                     errors.name
                       ? 'border-red-400 focus:ring-1 focus:ring-red-400'
-                      : 'border-[#e0e0e0] focus:border-[#f04e23] focus:ring-1 focus:ring-[#f04e23]',
+                      : 'border-[#e0e0e0] focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb]',
                   )}
                 />
                 {errors.name && (
@@ -214,7 +214,7 @@ export default function JobAlertModal({
                     'w-full rounded-lg border px-3 py-2.5 text-sm text-[#1a1a2e] placeholder-gray-400 outline-none transition',
                     errors.keywords
                       ? 'border-red-400 focus:ring-1 focus:ring-red-400'
-                      : 'border-[#e0e0e0] focus:border-[#f04e23] focus:ring-1 focus:ring-[#f04e23]',
+                      : 'border-[#e0e0e0] focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb]',
                   )}
                 />
                 {errors.keywords && (
@@ -233,7 +233,7 @@ export default function JobAlertModal({
                   value={form.location}
                   onChange={(e) => set('location', e.target.value)}
                   placeholder="e.g. Bangalore, Remote"
-                  className="w-full rounded-lg border border-[#e0e0e0] px-3 py-2.5 text-sm text-[#1a1a2e] placeholder-gray-400 outline-none transition focus:border-[#f04e23] focus:ring-1 focus:ring-[#f04e23]"
+                  className="w-full rounded-lg border border-[#e0e0e0] px-3 py-2.5 text-sm text-[#1a1a2e] placeholder-gray-400 outline-none transition focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb]"
                 />
               </div>
 
@@ -246,7 +246,7 @@ export default function JobAlertModal({
                   id="alert-job-type"
                   value={form.job_type}
                   onChange={(e) => set('job_type', e.target.value)}
-                  className="w-full rounded-lg border border-[#e0e0e0] px-3 py-2.5 text-sm text-[#1a1a2e] outline-none transition focus:border-[#f04e23] focus:ring-1 focus:ring-[#f04e23]"
+                  className="w-full rounded-lg border border-[#e0e0e0] px-3 py-2.5 text-sm text-[#1a1a2e] outline-none transition focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb]"
                 >
                   {JOB_TYPE_OPTIONS.map(({ label, value }) => (
                     <option key={value} value={value}>
@@ -265,7 +265,7 @@ export default function JobAlertModal({
                   id="alert-salary"
                   value={form.salaryRange}
                   onChange={(e) => set('salaryRange', e.target.value)}
-                  className="w-full rounded-lg border border-[#e0e0e0] px-3 py-2.5 text-sm text-[#1a1a2e] outline-none transition focus:border-[#f04e23] focus:ring-1 focus:ring-[#f04e23]"
+                  className="w-full rounded-lg border border-[#e0e0e0] px-3 py-2.5 text-sm text-[#1a1a2e] outline-none transition focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb]"
                 >
                   {SALARY_RANGES.map(({ label }) => (
                     <option key={label} value={label === 'Any salary' ? '' : label}>
@@ -285,8 +285,8 @@ export default function JobAlertModal({
                       className={cn(
                         'flex flex-1 cursor-pointer items-center justify-center rounded-lg border py-2 text-sm font-medium transition-colors',
                         form.frequency === value
-                          ? 'border-[#f04e23] bg-orange-50 text-[#f04e23]'
-                          : 'border-[#e0e0e0] text-gray-600 hover:border-[#f04e23]/50',
+                          ? 'border-[#2563eb] bg-teal-50 text-[#2563eb]'
+                          : 'border-[#e0e0e0] text-gray-600 hover:border-[#2563eb]/50',
                       )}
                     >
                       <input
@@ -319,8 +319,8 @@ export default function JobAlertModal({
                 type="submit"
                 disabled={submitting}
                 className={cn(
-                  'flex min-w-[140px] items-center justify-center gap-2 rounded-md bg-[#f04e23] px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-opacity hover:opacity-90',
-                  'focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f04e23] focus-visible:ring-offset-2',
+                  'flex min-w-[140px] items-center justify-center gap-2 rounded-md bg-[#2563eb] px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-opacity hover:opacity-90',
+                  'focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb] focus-visible:ring-offset-2',
                   'disabled:cursor-not-allowed disabled:opacity-60',
                 )}
               >

@@ -153,7 +153,7 @@ export default function ApplyModal({ job, isOpen, onClose, onSuccess }: ApplyMod
                   rows={5}
                   maxLength={2000}
                   placeholder="Tell the employer why you're a great fit for this role…"
-                  className="w-full resize-none rounded-lg border border-[#e0e0e0] px-3 py-2.5 text-sm text-[#1a1a2e] placeholder-gray-400 outline-none transition focus:border-[#f04e23] focus:ring-1 focus:ring-[#f04e23]"
+                  className="w-full resize-none rounded-lg border border-[#e0e0e0] px-3 py-2.5 text-sm text-[#1a1a2e] placeholder-gray-400 outline-none transition focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb]"
                 />
                 <p className="mt-1 text-right text-xs text-gray-400">
                   {coverLetter.length}/2000
@@ -168,7 +168,7 @@ export default function ApplyModal({ job, isOpen, onClose, onSuccess }: ApplyMod
                 {existingResumeUrl && !resumeFile && (
                   <div className="mb-2 flex items-center justify-between rounded-lg border border-[#e0e0e0] bg-[#f5f5f5] px-3 py-2.5">
                     <div className="flex items-center gap-2 min-w-0">
-                      <Paperclip className="h-4 w-4 shrink-0 text-[#f04e23]" />
+                      <Paperclip className="h-4 w-4 shrink-0 text-[#2563eb]" />
                       <span className="truncate text-sm text-[#1a1a2e]">
                         {existingResumeFilename ?? 'resume.pdf'}
                       </span>
@@ -176,7 +176,7 @@ export default function ApplyModal({ job, isOpen, onClose, onSuccess }: ApplyMod
                     <button
                       type="button"
                       onClick={() => fileInputRef.current?.click()}
-                      className="ml-3 shrink-0 text-xs font-medium text-[#f04e23] hover:underline"
+                      className="ml-3 shrink-0 text-xs font-medium text-[#2563eb] hover:underline"
                     >
                       Replace
                     </button>
@@ -185,9 +185,9 @@ export default function ApplyModal({ job, isOpen, onClose, onSuccess }: ApplyMod
 
                 {/* New file chosen */}
                 {resumeFile && (
-                  <div className="mb-2 flex items-center justify-between rounded-lg border border-[#f04e23]/30 bg-orange-50 px-3 py-2.5">
+                  <div className="mb-2 flex items-center justify-between rounded-lg border border-[#2563eb]/30 bg-teal-50 px-3 py-2.5">
                     <div className="flex items-center gap-2 min-w-0">
-                      <Paperclip className="h-4 w-4 shrink-0 text-[#f04e23]" />
+                      <Paperclip className="h-4 w-4 shrink-0 text-[#2563eb]" />
                       <span className="truncate text-sm text-[#1a1a2e]">{resumeFile.name}</span>
                     </div>
                     <button
@@ -209,7 +209,7 @@ export default function ApplyModal({ job, isOpen, onClose, onSuccess }: ApplyMod
                   <button
                     type="button"
                     onClick={() => fileInputRef.current?.click()}
-                    className="flex w-full items-center justify-center gap-2 rounded-lg border-2 border-dashed border-[#e0e0e0] px-4 py-4 text-sm text-gray-500 transition-colors hover:border-[#f04e23] hover:text-[#f04e23]"
+                    className="flex w-full items-center justify-center gap-2 rounded-lg border-2 border-dashed border-[#e0e0e0] px-4 py-4 text-sm text-gray-500 transition-colors hover:border-[#2563eb] hover:text-[#2563eb]"
                   >
                     <Upload className="h-4 w-4" />
                     Upload Resume (PDF, max 5 MB)
@@ -248,8 +248,8 @@ export default function ApplyModal({ job, isOpen, onClose, onSuccess }: ApplyMod
                 type="submit"
                 disabled={isLoading}
                 className={cn(
-                  'flex min-w-[140px] items-center justify-center gap-2 rounded-md bg-[#f04e23] px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-opacity hover:opacity-90',
-                  'focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f04e23] focus-visible:ring-offset-2',
+                  'flex min-w-[140px] items-center justify-center gap-2 rounded-md bg-[#2563eb] px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-opacity hover:opacity-90',
+                  'focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb] focus-visible:ring-offset-2',
                   'disabled:cursor-not-allowed disabled:opacity-60',
                 )}
               >

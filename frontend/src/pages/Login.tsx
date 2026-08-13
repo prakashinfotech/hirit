@@ -8,7 +8,7 @@ import toast from 'react-hot-toast';
 import { useAuth } from '../context/AuthContext';
 
 const schema = z.object({
-  email: z.string().email('Please enter a valid email address'),
+  email: z.string().regex(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, 'Please enter a valid email address'),
   password: z.string().min(1, 'Password is required'),
 });
 
@@ -62,12 +62,12 @@ export default function Login() {
     <div className="min-h-screen flex">
       {/* ── Left panel ── */}
       <div className="hidden lg:flex lg:w-5/12 xl:w-1/2 flex-col justify-between p-12"
-           style={{ background: 'linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%)' }}>
+           style={{ background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)' }}>
         {/* Logo */}
         <Link to="/" className="inline-flex items-center gap-1 select-none">
-          <span className="text-3xl font-black text-white">found</span>
-          <span className="text-3xl font-black" style={{ color: '#f04e23' }}>it</span>
-          <span className="text-sm font-bold text-purple-300 ml-0.5 mt-1">.in</span>
+          <span className="text-3xl font-black text-white">hir</span>
+          <span className="text-3xl font-black text-blue-200">it</span>
+          <span className="text-sm font-bold text-blue-300 ml-0.5 mt-1">.in</span>
         </Link>
 
         {/* Hero text */}
@@ -75,22 +75,22 @@ export default function Login() {
           <h1 className="text-4xl xl:text-5xl font-extrabold text-white leading-tight mb-4">
             Welcome Back!
           </h1>
-          <p className="text-purple-200 text-lg mb-10 leading-relaxed">
+          <p className="text-blue-200 text-lg mb-10 leading-relaxed">
             Your dream job is just a login away
           </p>
 
           <ul className="space-y-4">
             {LEFT_BULLETS.map((item) => (
               <li key={item} className="flex items-center gap-3">
-                <CheckCircle className="w-5 h-5 text-purple-300 shrink-0" />
-                <span className="text-purple-100 font-medium">{item}</span>
+                <CheckCircle className="w-5 h-5 text-blue-300 shrink-0" />
+                <span className="text-blue-100 font-medium">{item}</span>
               </li>
             ))}
           </ul>
         </div>
 
         {/* Bottom decoration */}
-        <p className="text-purple-400 text-sm">
+        <p className="text-blue-400 text-sm">
           India's #1 job portal — trusted by millions
         </p>
       </div>
@@ -102,7 +102,7 @@ export default function Login() {
           <div className="lg:hidden text-center mb-8">
             <Link to="/" className="inline-flex items-center gap-1">
               <span className="text-3xl font-black text-[#1a1a2e]">found</span>
-              <span className="text-3xl font-black" style={{ color: '#f04e23' }}>it</span>
+              <span className="text-3xl font-black" style={{ color: '#2563eb' }}>it</span>
               <span className="text-sm font-bold text-gray-400 ml-0.5 mt-1">.in</span>
             </Link>
           </div>
@@ -112,7 +112,7 @@ export default function Login() {
             <h2 className="text-3xl font-bold text-gray-900">Sign In</h2>
             <p className="text-gray-500 mt-1.5 text-sm">
               New here?{' '}
-              <Link to="/register" className="font-semibold text-[#7c3aed] hover:underline">
+              <Link to="/register" className="font-semibold text-[#2563eb] hover:underline">
                 Create account
               </Link>
             </p>
@@ -121,20 +121,21 @@ export default function Login() {
           <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-5">
             {/* Email */}
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1.5">
+              <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-1.5">
                 Email Address
               </label>
               <div className="relative">
                 <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                 <input
                   {...register('email')}
+                  id="email"
                   type="email"
                   autoComplete="email"
                   placeholder="you@example.com"
                   className={`w-full border rounded-xl pl-10 pr-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none transition-all ${
                     errors.email
                       ? 'border-red-400 focus:border-red-400 focus:ring-2 focus:ring-red-100'
-                      : 'border-gray-300 focus:border-[#7c3aed] focus:ring-2 focus:ring-purple-100'
+                      : 'border-gray-300 focus:border-[#2563eb] focus:ring-2 focus:ring-blue-100'
                   }`}
                 />
               </div>
@@ -146,10 +147,10 @@ export default function Login() {
             {/* Password */}
             <div>
               <div className="flex items-center justify-between mb-1.5">
-                <label className="text-sm font-semibold text-gray-700">Password</label>
+                <label htmlFor="password" className="text-sm font-semibold text-gray-700">Password</label>
                 <Link
                   to="/forgot-password"
-                  className="text-xs font-medium text-[#7c3aed] hover:underline"
+                  className="text-xs font-medium text-[#2563eb] hover:underline"
                 >
                   Forgot password?
                 </Link>
@@ -158,13 +159,14 @@ export default function Login() {
                 <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                 <input
                   {...register('password')}
+                  id="password"
                   type={showPassword ? 'text' : 'password'}
                   autoComplete="current-password"
                   placeholder="Enter your password"
                   className={`w-full border rounded-xl pl-10 pr-11 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none transition-all ${
                     errors.password
                       ? 'border-red-400 focus:border-red-400 focus:ring-2 focus:ring-red-100'
-                      : 'border-gray-300 focus:border-[#7c3aed] focus:ring-2 focus:ring-purple-100'
+                      : 'border-gray-300 focus:border-[#2563eb] focus:ring-2 focus:ring-blue-100'
                   }`}
                 />
                 <button
@@ -185,7 +187,7 @@ export default function Login() {
               type="submit"
               disabled={isSubmitting}
               className="w-full cursor-pointer text-white font-semibold py-3.5 rounded-xl transition-all disabled:opacity-60 disabled:cursor-not-allowed shadow-md hover:shadow-lg hover:opacity-90"
-              style={{ background: '#7c3aed' }}
+              style={{ background: '#2563eb' }}
             >
               {isSubmitting ? 'Signing in...' : 'Sign In'}
             </button>
@@ -230,15 +232,15 @@ export default function Login() {
             <button
               type="button"
               onClick={() => setRole(role === 'employer' ? 'seeker' : 'employer')}
-              className="text-sm text-gray-500 hover:text-[#7c3aed] transition-colors"
+              className="text-sm text-gray-500 hover:text-[#2563eb] transition-colors"
             >
               {role === 'employer' ? (
                 <>Looking for a job?{' '}
-                  <span className="font-semibold text-[#7c3aed]">Sign in as Job Seeker</span>
+                  <span className="font-semibold text-[#2563eb]">Sign in as Job Seeker</span>
                 </>
               ) : (
                 <>Hiring?{' '}
-                  <span className="font-semibold text-[#7c3aed]">Sign in as Employer</span>
+                  <span className="font-semibold text-[#2563eb]">Sign in as Employer</span>
                 </>
               )}
             </button>

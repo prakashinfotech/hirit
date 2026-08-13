@@ -28,8 +28,8 @@ function ToggleSwitch({ checked, onChange, disabled, label }: ToggleSwitchProps)
       disabled={disabled}
       onClick={() => onChange(!checked)}
       className={cn(
-        'relative inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f04e23] focus-visible:ring-offset-2',
-        checked ? 'bg-[#f04e23]' : 'bg-gray-200',
+        'relative inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb] focus-visible:ring-offset-2',
+        checked ? 'bg-[#2563eb]' : 'bg-gray-200',
         disabled && 'cursor-not-allowed opacity-50',
       )}
     >
@@ -79,7 +79,7 @@ function AlertCard({
             {alert.name}
           </p>
           {alert.keywords && (
-            <p className="mt-0.5 truncate text-sm font-medium text-[#f04e23]">
+            <p className="mt-0.5 truncate text-sm font-medium text-[#2563eb]">
               "{alert.keywords}"
             </p>
           )}
@@ -115,7 +115,7 @@ function AlertCard({
             {toTitleCase(alert.job_type)}
           </span>
         )}
-        <span className="flex items-center gap-1 rounded-full bg-purple-50 px-2.5 py-0.5 text-xs font-medium text-purple-700">
+        <span className="flex items-center gap-1 rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-medium text-blue-700">
           <Clock className="h-3 w-3 shrink-0" />
           {alert.frequency === 'DAILY'
             ? 'Daily'
@@ -132,7 +132,7 @@ function AlertCard({
             type="button"
             onClick={() => onEdit(alert)}
             disabled={isDeleting || isToggling}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-[#e0e0e0] px-3 py-1.5 text-xs font-medium text-[#1a1a2e] transition-colors hover:border-[#f04e23] hover:text-[#f04e23] disabled:cursor-not-allowed disabled:opacity-50"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-[#e0e0e0] px-3 py-1.5 text-xs font-medium text-[#1a1a2e] transition-colors hover:border-[#2563eb] hover:text-[#2563eb] disabled:cursor-not-allowed disabled:opacity-50"
           >
             <Edit2 className="h-3.5 w-3.5" />
             Edit
@@ -249,7 +249,7 @@ export default function JobAlertsPage() {
               setEditingAlert(null);
               setModalOpen(true);
             }}
-            className="inline-flex items-center gap-2 rounded-lg bg-[#f04e23] px-4 py-2.5 text-sm font-medium text-white shadow-sm transition-opacity hover:opacity-90"
+            className="inline-flex items-center gap-2 rounded-lg bg-[#2563eb] px-4 py-2.5 text-sm font-medium text-white shadow-sm transition-opacity hover:opacity-90"
           >
             <Bell className="h-4 w-4" />
             Create New Alert

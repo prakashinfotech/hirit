@@ -70,7 +70,7 @@ export default function Pagination({
           'flex h-9 w-9 items-center justify-center rounded-lg border border-[#e0e0e0] text-sm transition-colors',
           currentPage === 1
             ? 'cursor-not-allowed text-gray-300'
-            : 'text-[#1a1a2e] hover:border-[#f04e23] hover:text-[#f04e23]',
+            : 'text-[#1a1a2e] hover:border-[#2563eb] hover:text-[#2563eb]',
         )}
       >
         <ChevronLeft className="h-4 w-4" />
@@ -96,8 +96,8 @@ export default function Pagination({
             className={cn(
               'flex h-9 w-9 items-center justify-center rounded-lg border text-sm font-medium transition-colors',
               page === currentPage
-                ? 'border-[#f04e23] bg-[#f04e23] text-white shadow-sm'
-                : 'border-[#e0e0e0] text-[#1a1a2e] hover:border-[#f04e23] hover:text-[#f04e23]',
+                ? 'border-[#2563eb] bg-[#2563eb] text-white shadow-sm'
+                : 'border-[#e0e0e0] text-[#1a1a2e] hover:border-[#2563eb] hover:text-[#2563eb]',
             )}
           >
             {page}
@@ -115,7 +115,7 @@ export default function Pagination({
           'flex h-9 w-9 items-center justify-center rounded-lg border border-[#e0e0e0] text-sm transition-colors',
           currentPage === totalPages
             ? 'cursor-not-allowed text-gray-300'
-            : 'text-[#1a1a2e] hover:border-[#f04e23] hover:text-[#f04e23]',
+            : 'text-[#1a1a2e] hover:border-[#2563eb] hover:text-[#2563eb]',
         )}
       >
         <ChevronRight className="h-4 w-4" />

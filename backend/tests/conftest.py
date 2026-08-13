@@ -1,5 +1,5 @@
 """
-conftest.py — shared fixtures for the Foundit clone backend test suite.
+conftest.py — shared fixtures for the Hirit backend test suite.
 
 Strategy
 --------

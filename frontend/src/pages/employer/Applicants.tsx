@@ -6,7 +6,6 @@ import {
   ChevronLeft,
   ExternalLink,
   Users,
-  CheckCircle,
   Clock,
   Gift,
   XCircle,
@@ -64,12 +63,12 @@ function StatChip({
   count,
   icon,
   colorClass,
-}: {
+}: Readonly<{
   label: string;
   count: number;
   icon: React.ReactNode;
   colorClass: string;
-}) {
+}>) {
   return (
     <div className="flex items-center gap-2 rounded-xl border border-[#e0e0e0] bg-white px-4 py-3 shadow-sm">
       <div className={cn('flex h-8 w-8 items-center justify-center rounded-lg', colorClass)}>
@@ -97,7 +96,7 @@ function ApplicantCard({
   index,
   onStatusChange,
   isUpdating,
-}: ApplicantCardProps) {
+}: Readonly<ApplicantCardProps>) {
   const applicant = application.applicant;
   const fullName = applicant
     ? `${applicant.first_name} ${applicant.last_name}`.trim()
@@ -167,7 +166,7 @@ function ApplicantCard({
           }
           disabled={isUpdating}
           aria-label="Change applicant status"
-          className="flex-1 rounded-lg border border-[#e0e0e0] px-2.5 py-1.5 text-xs font-medium text-[#1a1a2e] outline-none transition focus:border-[#f04e23] focus:ring-1 focus:ring-[#f04e23]"
+          className="flex-1 rounded-lg border border-[#e0e0e0] px-2.5 py-1.5 text-xs font-medium text-[#1a1a2e] outline-none transition focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb]"
         >
           {ALL_STATUSES.map(({ value, label }) => (
             <option key={value} value={value}>
@@ -182,7 +181,7 @@ function ApplicantCard({
             href={application.resume_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-lg border border-[#e0e0e0] px-3 py-1.5 text-xs font-medium text-[#1a1a2e] transition-colors hover:border-[#f04e23] hover:text-[#f04e23]"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-[#e0e0e0] px-3 py-1.5 text-xs font-medium text-[#1a1a2e] transition-colors hover:border-[#2563eb] hover:text-[#2563eb]"
           >
             <ExternalLink className="h-3.5 w-3.5" />
             Resume
@@ -207,7 +206,7 @@ function ApplicantCard({
               onStatusChange(application.id, ApplicationStatus.SHORTLISTED)
             }
             disabled={isUpdating}
-            className="inline-flex items-center gap-1.5 rounded-lg bg-orange-50 px-3 py-1.5 text-xs font-medium text-[#f04e23] transition-colors hover:bg-orange-100 disabled:cursor-not-allowed disabled:opacity-50"
+            className="inline-flex items-center gap-1.5 rounded-lg bg-teal-50 px-3 py-1.5 text-xs font-medium text-[#2563eb] transition-colors hover:bg-teal-100 disabled:cursor-not-allowed disabled:opacity-50"
           >
             <Star className="h-3.5 w-3.5" />
             Shortlist
@@ -342,7 +341,7 @@ export default function ApplicantsPage() {
         <button
           type="button"
           onClick={() => navigate(-1)}
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#e0e0e0] text-gray-500 transition-colors hover:border-[#f04e23] hover:text-[#f04e23]"
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#e0e0e0] text-gray-500 transition-colors hover:border-[#2563eb] hover:text-[#2563eb]"
           aria-label="Go back"
         >
           <ChevronLeft className="h-5 w-5" />
@@ -350,7 +349,7 @@ export default function ApplicantsPage() {
         <div>
           <h1 className="text-xl font-bold text-[#1a1a2e] sm:text-2xl">
             Applicants for{' '}
-            <span className="text-[#f04e23]">{job?.title ?? 'this job'}</span>
+            <span className="text-[#2563eb]">{job?.title ?? 'this job'}</span>
           </h1>
           <p className="mt-0.5 text-sm text-gray-400">
             {job?.company?.name ?? ''} · {job?.location ?? ''}
@@ -369,14 +368,14 @@ export default function ApplicantsPage() {
         <StatChip
           label="Shortlisted"
           count={stats.shortlisted}
-          icon={<Star className="h-4 w-4 text-[#f04e23]" />}
-          colorClass="bg-orange-50"
+          icon={<Star className="h-4 w-4 text-[#2563eb]" />}
+          colorClass="bg-teal-50"
         />
         <StatChip
           label="Interviewed"
           count={stats.interviewed}
-          icon={<Clock className="h-4 w-4 text-purple-600" />}
-          colorClass="bg-purple-50"
+          icon={<Clock className="h-4 w-4 text-blue-600" />}
+          colorClass="bg-blue-50"
         />
         <StatChip
           label="Offered"
@@ -407,7 +406,7 @@ export default function ApplicantsPage() {
               className={cn(
                 'flex shrink-0 items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
                 statusFilter === key
-                  ? 'bg-[#f04e23] text-white shadow-sm'
+                  ? 'bg-[#2563eb] text-white shadow-sm'
                   : 'text-gray-600 hover:bg-[#f5f5f5]',
               )}
             >

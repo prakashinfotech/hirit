@@ -1,15 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
 @import 'tailwindcss';
 
 @theme {
-  --color-foundit-orange: #f04e23;
-  --color-foundit-navy: #1a1a2e;
-  --color-foundit-gray: #f5f5f5;
+  --color-brand-primary: #2563eb;
+  --color-brand-primary-hover: #1d4ed8;
+  --color-brand-dark: #1f2937;
+  --color-brand-bg: #f9fafb;
+
+  /* Legacy fallbacks to prevent any broken styling in untracked CSS calls */
+  --color-foundit-orange: #2563eb;
+  --color-foundit-navy: #1f2937;
+  --color-foundit-gray: #f9fafb;
 }
 
 @layer base {
   body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: #f5f5f5;
+    font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--color-brand-bg);
     margin: 0;
     padding: 0;
   }
@@ -38,4 +45,32 @@
 
 .animate-marquee:hover {
   animation-play-state: paused;
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes float-slower {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-float-slower {
+  animation: float-slower 8s ease-in-out infinite;
+  will-change: transform;
 }

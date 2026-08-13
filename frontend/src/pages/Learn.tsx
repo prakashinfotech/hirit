@@ -14,7 +14,7 @@ const TRACKS = [
     icon: Database,
     title: 'Data Science & AI',
     courses: ['Machine Learning with Python', 'SQL & Database Design', 'Power BI & Tableau'],
-    color: 'bg-purple-50 text-[#7c3aed]',
+    color: 'bg-blue-50 text-[#2563eb]',
     learners: '1.8L learners',
   },
   {
@@ -28,7 +28,7 @@ const TRACKS = [
     icon: Megaphone,
     title: 'Digital Marketing',
     courses: ['SEO & Content Strategy', 'Social Media Marketing', 'Google Ads & Analytics'],
-    color: 'bg-orange-50 text-[#f04e23]',
+    color: 'bg-teal-50 text-[#2563eb]',
     learners: '1.2L learners',
   },
   {
@@ -85,7 +85,7 @@ export default function Learn() {
                 className="bg-white rounded-xl border border-[#e0e0e0] overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer"
                 onClick={() => alert('Coming soon!')}
               >
-                <div className="h-32 bg-gradient-to-br from-[#7c3aed] to-[#f04e23] flex items-center justify-center">
+                <div className="h-32 bg-gradient-to-br from-[#2563eb] to-[#2563eb] flex items-center justify-center">
                   <span className="text-white text-4xl font-black opacity-20">f</span>
                 </div>
                 <div className="p-4">
@@ -99,7 +99,7 @@ export default function Learn() {
                   </div>
                   <button
                     type="button"
-                    className="cursor-pointer mt-3 w-full rounded-lg bg-[#f04e23] py-2 text-xs font-semibold text-white hover:opacity-90 transition-opacity"
+                    className="cursor-pointer mt-3 w-full rounded-lg bg-[#2563eb] py-2 text-xs font-semibold text-white hover:opacity-90 transition-opacity"
                   >
                     Enrol Now
                   </button>

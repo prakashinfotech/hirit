@@ -94,7 +94,7 @@ export default function CompanyProfile() {
         <Navbar />
         <div className="pt-20 flex-1 flex flex-col items-center justify-center">
           <h2 className="text-xl font-semibold text-gray-700 mb-3">Company not found</h2>
-          <Link to="/jobs" className="text-[#f04e23] hover:underline">Browse jobs</Link>
+          <Link to="/jobs" className="text-[#2563eb] hover:underline">Browse jobs</Link>
         </div>
         <Footer />
       </div>
@@ -160,7 +160,7 @@ export default function CompanyProfile() {
                       href={company.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 text-sm text-orange-400 hover:text-orange-300 transition-colors"
+                      className="flex items-center gap-1.5 text-sm text-teal-400 hover:text-teal-300 transition-colors"
                     >
                       <Globe className="w-4 h-4" /> Website <ExternalLink className="w-3 h-3" />
                     </a>
@@ -191,7 +191,7 @@ export default function CompanyProfile() {
                   onClick={() => setActiveTab(tab.key)}
                   className={`px-6 py-4 text-sm font-semibold transition-colors ${
                     activeTab === tab.key
-                      ? 'border-b-2 border-[#f04e23] text-[#f04e23]'
+                      ? 'border-b-2 border-[#2563eb] text-[#2563eb]'
                       : 'text-gray-500 hover:text-gray-800'
                   }`}
                 >
@@ -311,7 +311,7 @@ export default function CompanyProfile() {
                   </div>
                   <div className="flex flex-wrap gap-3">
                     {company.website && (
-                      <a href={company.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-[#f04e23] border border-orange-200 bg-orange-50 rounded-lg px-4 py-2 hover:bg-orange-100 transition-colors">
+                      <a href={company.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-[#2563eb] border border-teal-200 bg-teal-50 rounded-lg px-4 py-2 hover:bg-teal-100 transition-colors">
                         <Globe className="w-4 h-4" /> Website
                       </a>
                     )}

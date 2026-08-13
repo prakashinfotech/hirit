@@ -206,7 +206,7 @@ export default function SearchBar({
                   onMouseDown={() => selectCity(city)}
                   className={cn(
                     'flex w-full items-center gap-2 px-3 py-2 text-sm text-[#333333] hover:bg-[#f5f5f5]',
-                    location === city && 'bg-purple-50 font-medium text-[#7c3aed]',
+                    location === city && 'bg-blue-50 font-medium text-[#2563eb]',
                   )}
                 >
                   <MapPin className="h-3.5 w-3.5 shrink-0 text-gray-400" />
@@ -220,7 +220,7 @@ export default function SearchBar({
         {/* Submit button */}
         <button
           type="submit"
-          className="shrink-0 bg-[#7c3aed] px-5 text-sm font-semibold text-white transition-opacity hover:opacity-90 focus:outline-none"
+          className="shrink-0 bg-[#2563eb] px-5 text-sm font-semibold text-white transition-opacity hover:opacity-90 focus:outline-none"
         >
           Search
         </button>
@@ -307,7 +307,7 @@ export default function SearchBar({
                 onMouseDown={() => selectCity(city)}
                 className={cn(
                   'flex w-full items-center gap-2 px-3 py-2 text-sm text-[#333333] transition-colors hover:bg-[#f5f5f5]',
-                  location === city && 'bg-purple-50 font-medium text-[#7c3aed]',
+                  location === city && 'bg-blue-50 font-medium text-[#2563eb]',
                 )}
               >
                 <MapPin className="h-3.5 w-3.5 shrink-0 text-gray-400" />
@@ -349,7 +349,7 @@ export default function SearchBar({
               onClick={() => { setExperience(''); setShowExpDropdown(false); }}
               className={cn(
                 'w-full px-4 py-2 text-left text-sm hover:bg-[#f5f5f5]',
-                !experience ? 'font-semibold text-[#7c3aed]' : 'text-[#333333]',
+                !experience ? 'font-semibold text-[#2563eb]' : 'text-[#333333]',
               )}
             >
               Any experience
@@ -362,7 +362,7 @@ export default function SearchBar({
                 className={cn(
                   'w-full px-4 py-2 text-left text-sm hover:bg-[#f5f5f5]',
                   experience === opt.value
-                    ? 'bg-purple-50 font-semibold text-[#7c3aed]'
+                    ? 'bg-blue-50 font-semibold text-[#2563eb]'
                     : 'text-[#333333]',
                 )}
               >
@@ -376,7 +376,7 @@ export default function SearchBar({
       {/* Submit button — purple pill */}
       <button
         type="submit"
-        className="shrink-0 rounded-full bg-[#7c3aed] my-1.5 mr-1.5 px-7 text-sm font-bold text-white transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7c3aed] focus-visible:ring-offset-1"
+        className="shrink-0 rounded-full bg-[#2563eb] my-1.5 mr-1.5 px-7 text-sm font-bold text-white transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb] focus-visible:ring-offset-1"
       >
         Search
       </button>

@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-import { X, Plus, Loader2, ChevronLeft } from 'lucide-react';
+import { Loader2, ChevronLeft } from 'lucide-react';
 import Spinner from '../../components/ui/Spinner';
 import SkillTag from '../../components/ui/SkillTag';
 import { createJob, updateJob, getJobById } from '../../api/jobs';
@@ -43,8 +43,8 @@ const EXP_YEARS = Array.from({ length: 21 }, (_, i) => i);
 
 const jobSchema = z
   .object({
-    title: z.string().min(3, 'Job title must be at least 3 characters.'),
-    category: z.string().min(1, 'Please select a category.'),
+    title: z.string().min(3, { message: 'Job title must be at least 3 characters.' }),
+    category: z.string().min(1, { message: 'Please select a category.' }),
     job_type: z.enum([
       JobType.FULL_TIME,
       JobType.PART_TIME,
@@ -53,10 +53,10 @@ const jobSchema = z
       JobType.FREELANCE,
       JobType.TEMPORARY,
     ]),
-    description: z.string().min(100, 'Description must be at least 100 characters.'),
-    location: z.string().min(2, 'Location is required.'),
+    description: z.string().min(100, { message: 'Description must be at least 100 characters.' }),
+    location: z.string().min(2, { message: 'Location is required.' }),
     is_remote: z.boolean(),
-    openings: z.coerce.number().int().min(1, 'At least 1 opening required.').optional(),
+    openings: z.coerce.number().int().min(1, { message: 'At least 1 opening required.' }).optional(),
     application_deadline: z.string().optional(),
     experience_min: z.coerce.number().int().min(0).max(20),
     experience_max: z.coerce.number().int().min(0).max(20),
@@ -76,10 +76,10 @@ type JobFormValues = z.infer<typeof jobSchema>;
 
 // ─── Helper Components ────────────────────────────────────────────────────────
 
-function SectionHeader({ number, title }: { number: number; title: string }) {
+function SectionHeader({ number, title }: Readonly<{ number: number; title: string }>) {
   return (
     <div className="flex items-center gap-3 border-b border-[#f0f0f0] pb-3">
-      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#f04e23] text-xs font-bold text-white">
+      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#2563eb] text-xs font-bold text-white">
         {number}
       </span>
       <h2 className="text-base font-semibold text-[#1a1a2e]">{title}</h2>
@@ -87,7 +87,7 @@ function SectionHeader({ number, title }: { number: number; title: string }) {
   );
 }
 
-function FieldError({ message }: { message?: string }) {
+function FieldError({ message }: Readonly<{ message?: string }>) {
   if (!message) return null;
   return <p className="mt-1 text-xs text-red-500">{message}</p>;
 }
@@ -97,7 +97,7 @@ const inputCls = (hasError?: boolean) =>
     'w-full rounded-lg border px-3 py-2.5 text-sm text-[#1a1a2e] placeholder-gray-400 outline-none transition',
     hasError
       ? 'border-red-400 focus:ring-1 focus:ring-red-400'
-      : 'border-[#e0e0e0] focus:border-[#f04e23] focus:ring-1 focus:ring-[#f04e23]',
+      : 'border-[#e0e0e0] focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb]',
   );
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
@@ -265,6 +265,18 @@ export default function PostJobPage() {
     );
   }
 
+  const renderSubmitButtonContent = () => {
+    if (isSubmitting) {
+      return (
+        <>
+          <Loader2 className="h-4 w-4 animate-spin" />
+          {editId ? 'Saving…' : 'Posting…'}
+        </>
+      );
+    }
+    return editId ? 'Save Changes' : 'Post Job';
+  };
+
   return (
     <div className="mx-auto max-w-3xl">
       {/* Header */}
@@ -272,7 +284,7 @@ export default function PostJobPage() {
         <button
           type="button"
           onClick={() => navigate(-1)}
-          className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#e0e0e0] text-gray-500 transition-colors hover:border-[#f04e23] hover:text-[#f04e23]"
+          className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#e0e0e0] text-gray-500 transition-colors hover:border-[#2563eb] hover:text-[#2563eb]"
           aria-label="Go back"
         >
           <ChevronLeft className="h-5 w-5" />
@@ -299,7 +311,7 @@ export default function PostJobPage() {
           {/* Job Title */}
           <div>
             <label htmlFor="title" className="mb-1 block text-sm font-medium text-[#1a1a2e]">
-              Job Title <span className="text-[#f04e23]">*</span>
+              Job Title <span className="text-[#2563eb]">*</span>
             </label>
             <input
               id="title"
@@ -314,7 +326,7 @@ export default function PostJobPage() {
           {/* Category */}
           <div>
             <label htmlFor="category" className="mb-1 block text-sm font-medium text-[#1a1a2e]">
-              Category <span className="text-[#f04e23]">*</span>
+              Category <span className="text-[#2563eb]">*</span>
             </label>
             <select
               id="category"
@@ -334,7 +346,7 @@ export default function PostJobPage() {
           {/* Job Type */}
           <div>
             <p className="mb-2 text-sm font-medium text-[#1a1a2e]">
-              Job Type <span className="text-[#f04e23]">*</span>
+              Job Type <span className="text-[#2563eb]">*</span>
             </p>
             <div className="flex flex-wrap gap-3">
               {JOB_TYPES.map(({ label, value }) => (
@@ -345,7 +357,7 @@ export default function PostJobPage() {
                     {...register('job_type')}
                     className="peer sr-only"
                   />
-                  <span className="inline-flex items-center rounded-lg border px-4 py-2 text-sm font-medium transition-colors peer-checked:border-[#f04e23] peer-checked:bg-orange-50 peer-checked:text-[#f04e23] border-[#e0e0e0] text-gray-600 hover:border-[#f04e23]/50">
+                  <span className="inline-flex items-center rounded-lg border px-4 py-2 text-sm font-medium transition-colors peer-checked:border-[#2563eb] peer-checked:bg-teal-50 peer-checked:text-[#2563eb] border-[#e0e0e0] text-gray-600 hover:border-[#2563eb]/50">
                     {label}
                   </span>
                 </label>
@@ -363,7 +375,7 @@ export default function PostJobPage() {
           <div>
             <div className="mb-1 flex items-center justify-between">
               <label htmlFor="description" className="text-sm font-medium text-[#1a1a2e]">
-                Job Description <span className="text-[#f04e23]">*</span>
+                Job Description <span className="text-[#2563eb]">*</span>
               </label>
               <span
                 className={cn(
@@ -387,7 +399,7 @@ export default function PostJobPage() {
           {/* Location */}
           <div>
             <label htmlFor="location" className="mb-1 block text-sm font-medium text-[#1a1a2e]">
-              Location <span className="text-[#f04e23]">*</span>
+              Location <span className="text-[#2563eb]">*</span>
             </label>
             <input
               id="location"
@@ -404,8 +416,8 @@ export default function PostJobPage() {
             <input
               type="checkbox"
               {...register('is_remote')}
-              className="h-4 w-4 rounded border-[#e0e0e0] accent-[#f04e23]"
-            />
+              className="h-4 w-4 rounded border-[#e0e0e0] accent-[#2563eb]"
+            />{' '}
             Also open to remote
           </label>
 
@@ -498,8 +510,8 @@ export default function PostJobPage() {
                     type="checkbox"
                     checked={!field.value}
                     onChange={(e) => field.onChange(!e.target.checked)}
-                    className="h-4 w-4 rounded border-[#e0e0e0] accent-[#f04e23]"
-                  />
+                    className="h-4 w-4 rounded border-[#e0e0e0] accent-[#2563eb]"
+                  />{' '}
                   Don't disclose salary
                 </label>
               )}
@@ -541,7 +553,7 @@ export default function PostJobPage() {
 
           {/* Required Skills */}
           <div>
-            <label className="mb-1 block text-sm font-medium text-[#1a1a2e]">
+            <label htmlFor="skills_input" className="mb-1 block text-sm font-medium text-[#1a1a2e]">
               Required Skills
             </label>
             <p className="mb-2 text-xs text-gray-400">
@@ -550,7 +562,7 @@ export default function PostJobPage() {
             <div
               className={cn(
                 'flex min-h-[48px] flex-wrap gap-2 rounded-lg border px-3 py-2 transition',
-                'border-[#e0e0e0] focus-within:border-[#f04e23] focus-within:ring-1 focus-within:ring-[#f04e23]',
+                'border-[#e0e0e0] focus-within:border-[#2563eb] focus-within:ring-1 focus-within:ring-[#2563eb]',
               )}
             >
               {skills.map((skill) => (
@@ -562,6 +574,7 @@ export default function PostJobPage() {
                 />
               ))}
               <input
+                id="skills_input"
                 type="text"
                 value={skillInput}
                 onChange={(e) => setSkillInput(e.target.value)}
@@ -596,18 +609,9 @@ export default function PostJobPage() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="inline-flex min-w-[120px] items-center justify-center gap-2 rounded-lg bg-[#f04e23] px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+            className="inline-flex min-w-[120px] items-center justify-center gap-2 rounded-lg bg-[#2563eb] px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
           >
-            {isSubmitting ? (
-              <>
-                <Loader2 className="h-4 w-4 animate-spin" />
-                {editId ? 'Saving…' : 'Posting…'}
-              </>
-            ) : editId ? (
-              'Save Changes'
-            ) : (
-              'Post Job'
-            )}
+            {renderSubmitButtonContent()}
           </button>
         </div>
       </form>

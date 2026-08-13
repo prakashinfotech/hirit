@@ -30,10 +30,22 @@ const personalSchema = z.object({
   phone: z.string().optional(),
   current_location: z.string().optional(),
   summary: z.string().optional(),
-  linkedin_url: z.string().url('Enter a valid URL').optional().or(z.literal('')),
-  github_url: z.string().url('Enter a valid URL').optional().or(z.literal('')),
+  linkedin_url: z.string().regex(/^https?:\/\/[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\b[-a-zA-Z0-9@:%_+.~#?&/=]*$/, 'Enter a valid URL').optional().or(z.literal('')),
+  github_url: z.string().regex(/^https?:\/\/[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\b[-a-zA-Z0-9@:%_+.~#?&/=]*$/, 'Enter a valid URL').optional().or(z.literal('')),
 });
 type PersonalData = z.infer<typeof personalSchema>;
+
+function calculateProgress(profile: any): number {
+  if (!profile) return 0;
+  let score = 0;
+  if (profile.headline) score += 10;
+  if (profile.summary) score += 15;
+  if (profile.skills && profile.skills.length > 0) score += 15;
+  if (profile.experiences && profile.experiences.length > 0) score += 25;
+  if (profile.educations && profile.educations.length > 0) score += 15;
+  if (profile.resume_url) score += 20;
+  return score;
+}
 
 export default function Profile() {
   const { user, refreshUser } = useAuth();
@@ -147,14 +159,7 @@ export default function Profile() {
 
       {/* Profile Progress */}
       <div className="bg-white rounded-xl border border-gray-200 p-5 shadow-sm">
-        <ProfileProgress percentage={profile ? Math.round((
-          (profile.headline ? 10 : 0) +
-          (profile.summary ? 15 : 0) +
-          (profile.skills?.length ? 15 : 0) +
-          (profile.experiences?.length ? 25 : 0) +
-          (profile.educations?.length ? 15 : 0) +
-          (profile.resume_url ? 20 : 0)
-        )) : 0} />
+        <ProfileProgress percentage={calculateProgress(profile)} />
       </div>
 
       {/* Personal Info */}
@@ -162,7 +167,7 @@ export default function Profile() {
         <div className="flex items-start justify-between mb-5">
           <h2 className="font-bold text-[#1a1a2e] text-lg">Personal Information</h2>
           {!editingPersonal && (
-            <button onClick={handleEditPersonal} className="flex items-center gap-1.5 text-sm text-[#f04e23] hover:underline font-medium">
+            <button type="button" onClick={handleEditPersonal} className="flex items-center gap-1.5 text-sm text-[#2563eb] hover:underline font-medium">
               <Pencil className="w-3.5 h-3.5" /> Edit
             </button>
           )}
@@ -171,8 +176,9 @@ export default function Profile() {
         {/* Avatar */}
         <div className="flex items-center gap-5 mb-6">
           <div className="relative">
-            <div
-              className="w-20 h-20 rounded-full bg-orange-50 text-orange-600 flex items-center justify-center text-2xl font-bold overflow-hidden border-2 border-orange-200 cursor-pointer"
+            <button
+              type="button"
+              className="w-20 h-20 rounded-full bg-teal-50 text-teal-600 flex items-center justify-center text-2xl font-bold overflow-hidden border-2 border-teal-200 cursor-pointer"
               onClick={() => fileInputRef.current?.click()}
             >
               {user?.avatar_url ? (
@@ -180,10 +186,11 @@ export default function Profile() {
               ) : (
                 getInitials(fullName)
               )}
-            </div>
+            </button>
             <button
+              type="button"
               onClick={() => fileInputRef.current?.click()}
-              className="absolute -bottom-1 -right-1 w-7 h-7 bg-[#f04e23] rounded-full flex items-center justify-center text-white shadow"
+              className="absolute -bottom-1 -right-1 w-7 h-7 bg-[#2563eb] rounded-full flex items-center justify-center text-white shadow"
             >
               <Camera className="w-3.5 h-3.5" />
             </button>
@@ -202,48 +209,48 @@ export default function Profile() {
           >
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">First Name</label>
-                <input {...register('first_name')} className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#f04e23]" />
+                <label htmlFor="first_name" className="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                <input {...register('first_name')} id="first_name" className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2563eb]" />
                 {errors.first_name && <p className="text-xs text-red-500 mt-0.5">{errors.first_name.message}</p>}
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
-                <input {...register('last_name')} className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#f04e23]" />
+                <label htmlFor="last_name" className="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                <input {...register('last_name')} id="last_name" className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2563eb]" />
                 {errors.last_name && <p className="text-xs text-red-500 mt-0.5">{errors.last_name.message}</p>}
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Professional Headline</label>
-              <input {...register('headline')} placeholder="e.g. Senior React Developer | 5 years experience" className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#f04e23]" />
+              <label htmlFor="headline" className="block text-sm font-medium text-gray-700 mb-1">Professional Headline</label>
+              <input {...register('headline')} id="headline" placeholder="e.g. Senior React Developer | 5 years experience" className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2563eb]" />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
-                <input {...register('phone')} className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#f04e23]" />
+                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                <input {...register('phone')} id="phone" className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2563eb]" />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Location</label>
-                <input {...register('current_location')} placeholder="e.g. Bangalore, India" className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#f04e23]" />
+                <label htmlFor="current_location" className="block text-sm font-medium text-gray-700 mb-1">Location</label>
+                <input {...register('current_location')} id="current_location" placeholder="e.g. Bangalore, India" className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2563eb]" />
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Bio / Summary</label>
-              <textarea {...register('summary')} rows={3} placeholder="Describe yourself..." className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#f04e23] resize-none" />
+              <label htmlFor="summary" className="block text-sm font-medium text-gray-700 mb-1">Bio / Summary</label>
+              <textarea {...register('summary')} id="summary" rows={3} placeholder="Describe yourself..." className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2563eb] resize-none" />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">LinkedIn URL</label>
-                <input {...register('linkedin_url')} placeholder="https://linkedin.com/in/..." className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#f04e23]" />
+                <label htmlFor="linkedin_url" className="block text-sm font-medium text-gray-700 mb-1">LinkedIn URL</label>
+                <input {...register('linkedin_url')} id="linkedin_url" placeholder="https://linkedin.com/in/..." className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2563eb]" />
                 {errors.linkedin_url && <p className="text-xs text-red-500 mt-0.5">{errors.linkedin_url.message}</p>}
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">GitHub URL</label>
-                <input {...register('github_url')} placeholder="https://github.com/..." className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#f04e23]" />
+                <label htmlFor="github_url" className="block text-sm font-medium text-gray-700 mb-1">GitHub URL</label>
+                <input {...register('github_url')} id="github_url" placeholder="https://github.com/..." className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2563eb]" />
                 {errors.github_url && <p className="text-xs text-red-500 mt-0.5">{errors.github_url.message}</p>}
               </div>
             </div>
             <div className="flex gap-3">
-              <button type="submit" disabled={isSubmitting} className="cursor-pointer flex items-center gap-1.5 bg-[#f04e23] text-white px-5 py-2.5 rounded-lg font-semibold text-sm hover:bg-orange-600 transition-colors disabled:opacity-60">
+              <button type="submit" disabled={isSubmitting} className="cursor-pointer flex items-center gap-1.5 bg-[#2563eb] text-white px-5 py-2.5 rounded-lg font-semibold text-sm hover:bg-teal-700 transition-colors disabled:opacity-60">
                 <Check className="w-4 h-4" /> {isSubmitting ? 'Saving...' : 'Save Changes'}
               </button>
               <button type="button" onClick={() => setEditingPersonal(false)} className="cursor-pointer flex items-center gap-1.5 border border-gray-300 text-gray-600 px-5 py-2.5 rounded-lg font-semibold text-sm hover:bg-gray-50 transition-colors">
@@ -290,9 +297,9 @@ export default function Profile() {
             onChange={(e) => setSkillInput(e.target.value)}
             onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); addSkill(); } }}
             placeholder="Type a skill and press Enter"
-            className="flex-1 border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#f04e23]"
+            className="flex-1 border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2563eb]"
           />
-          <button onClick={addSkill} className="bg-[#f04e23] text-white px-4 py-2.5 rounded-lg font-semibold text-sm hover:bg-orange-600 transition-colors">
+          <button type="button" onClick={addSkill} className="bg-[#2563eb] text-white px-4 py-2.5 rounded-lg font-semibold text-sm hover:bg-teal-700 transition-colors">
             <Plus className="w-4 h-4" />
           </button>
         </div>
@@ -345,12 +352,12 @@ export default function Profile() {
   );
 }
 
-function InfoItem({ label, value, isLink }: { label: string; value?: string | null; isLink?: boolean }) {
+function InfoItem({ label, value, isLink }: Readonly<{ label: string; value?: string | null; isLink?: boolean }>) {
   return (
     <div>
       <p className="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-0.5">{label}</p>
       {isLink && value ? (
-        <a href={value} target="_blank" rel="noopener noreferrer" className="text-[#f04e23] hover:underline truncate block">
+        <a href={value} target="_blank" rel="noopener noreferrer" className="text-[#2563eb] hover:underline truncate block">
           {value}
         </a>
       ) : (
@@ -362,8 +369,8 @@ function InfoItem({ label, value, isLink }: { label: string; value?: string | nu
 
 // ─── Sub-Components ───────────────────────────────────────────────────────────
 
-function ExperienceSection({ experiences, showForm, editingId, onShowForm, onHideForm, onSave, onDelete, onEdit }: {
-  experiences: Experience[];
+function ExperienceSection({ experiences, showForm, editingId, onShowForm, onHideForm, onSave, onDelete, onEdit }: Readonly<{
+  experiences: readonly Experience[];
   showForm: boolean;
   editingId: string | null;
   onShowForm: () => void;
@@ -371,7 +378,7 @@ function ExperienceSection({ experiences, showForm, editingId, onShowForm, onHid
   onSave: (data: any, id?: string) => void;
   onDelete: (id: string) => void;
   onEdit: (id: string) => void;
-}) {
+}>) {
   const editing = editingId ? experiences.find((e) => e.id === editingId) : undefined;
   const [form, setForm] = useState({
     company_name: editing?.company_name ?? '',
@@ -403,35 +410,35 @@ function ExperienceSection({ experiences, showForm, editingId, onShowForm, onHid
     <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
       <div className="flex items-center justify-between mb-5">
         <h2 className="font-bold text-[#1a1a2e] text-lg">Work Experience</h2>
-        <button onClick={onShowForm} className="flex items-center gap-1.5 text-sm text-[#f04e23] hover:underline font-medium">
+        <button type="button" onClick={onShowForm} className="flex items-center gap-1.5 text-sm text-[#2563eb] hover:underline font-medium">
           <Plus className="w-3.5 h-3.5" /> Add
         </button>
       </div>
 
       {showForm && (
-        <div className="border border-orange-200 bg-orange-50 rounded-xl p-4 mb-5">
+        <div className="border border-teal-200 bg-teal-50 rounded-xl p-4 mb-5">
           <h3 className="font-semibold text-[#1a1a2e] mb-3 text-sm">{editingId ? 'Edit' : 'Add'} Experience</h3>
           <div className="space-y-3">
             <div className="grid grid-cols-2 gap-3">
-              <input value={form.job_title} onChange={(e) => setForm({ ...form, job_title: e.target.value })} placeholder="Job Title *" className="border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#f04e23]" />
-              <input value={form.company_name} onChange={(e) => setForm({ ...form, company_name: e.target.value })} placeholder="Company Name *" className="border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#f04e23]" />
+              <input value={form.job_title} onChange={(e) => setForm({ ...form, job_title: e.target.value })} placeholder="Job Title *" className="border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2563eb]" />
+              <input value={form.company_name} onChange={(e) => setForm({ ...form, company_name: e.target.value })} placeholder="Company Name *" className="border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2563eb]" />
             </div>
-            <input value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} placeholder="Location" className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#f04e23]" />
+            <input value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} placeholder="Location" className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2563eb]" />
             <div className="grid grid-cols-2 gap-3">
-              <input type="date" value={form.start_date} onChange={(e) => setForm({ ...form, start_date: e.target.value })} className="border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#f04e23]" />
+              <input type="date" value={form.start_date} onChange={(e) => setForm({ ...form, start_date: e.target.value })} className="border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2563eb]" />
               {!form.is_current && (
-                <input type="date" value={form.end_date} onChange={(e) => setForm({ ...form, end_date: e.target.value })} className="border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#f04e23]" />
+                <input type="date" value={form.end_date} onChange={(e) => setForm({ ...form, end_date: e.target.value })} className="border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2563eb]" />
               )}
             </div>
             <label className="flex items-center gap-2 text-sm text-gray-700 cursor-pointer">
-              <input type="checkbox" checked={form.is_current} onChange={(e) => setForm({ ...form, is_current: e.target.checked })} className="accent-[#f04e23]" />
+              <input type="checkbox" checked={form.is_current} onChange={(e) => setForm({ ...form, is_current: e.target.checked })} className="accent-[#2563eb]" />{' '}
               Currently working here
             </label>
-            <textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} rows={3} placeholder="Describe your role and achievements..." className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#f04e23] resize-none" />
+            <textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} rows={3} placeholder="Describe your role and achievements..." className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2563eb] resize-none" />
           </div>
           <div className="flex gap-2 mt-3">
-            <button onClick={() => onSave(form, editingId ?? undefined)} className="cursor-pointer bg-[#f04e23] text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-orange-600 transition-colors">Save</button>
-            <button onClick={onHideForm} className="cursor-pointer border border-gray-300 text-gray-600 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50">Cancel</button>
+            <button type="button" onClick={() => onSave(form, editingId ?? undefined)} className="cursor-pointer bg-[#2563eb] text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-teal-700 transition-colors">Save</button>
+            <button type="button" onClick={onHideForm} className="cursor-pointer border border-gray-300 text-gray-600 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50">Cancel</button>
           </div>
         </div>
       )}
@@ -455,8 +462,8 @@ function ExperienceSection({ experiences, showForm, editingId, onShowForm, onHid
                     </p>
                   </div>
                   <div className="flex gap-2 ml-2">
-                    <button onClick={() => onEdit(exp.id)} className="text-gray-400 hover:text-[#f04e23]"><Pencil className="w-3.5 h-3.5" /></button>
-                    <button onClick={() => onDelete(exp.id)} className="text-gray-400 hover:text-red-500"><Trash2 className="w-3.5 h-3.5" /></button>
+                    <button type="button" onClick={() => onEdit(exp.id)} className="text-gray-400 hover:text-[#2563eb]"><Pencil className="w-3.5 h-3.5" /></button>
+                    <button type="button" onClick={() => onDelete(exp.id)} className="text-gray-400 hover:text-red-500"><Trash2 className="w-3.5 h-3.5" /></button>
                   </div>
                 </div>
                 {exp.description && <p className="text-xs text-gray-500 mt-1 leading-relaxed line-clamp-2">{exp.description}</p>}
@@ -469,8 +476,8 @@ function ExperienceSection({ experiences, showForm, editingId, onShowForm, onHid
   );
 }
 
-function EducationSection({ educations, showForm, editingId, onShowForm, onHideForm, onSave, onDelete, onEdit }: {
-  educations: Education[];
+function EducationSection({ educations, showForm, editingId, onShowForm, onHideForm, onSave, onDelete, onEdit }: Readonly<{
+  educations: readonly Education[];
   showForm: boolean;
   editingId: string | null;
   onShowForm: () => void;
@@ -478,7 +485,7 @@ function EducationSection({ educations, showForm, editingId, onShowForm, onHideF
   onSave: (data: any, id?: string) => void;
   onDelete: (id: string) => void;
   onEdit: (id: string) => void;
-}) {
+}>) {
   const editing = editingId ? educations.find((e) => e.id === editingId) : undefined;
   const [form, setForm] = useState({
     institution: editing?.institution ?? '',
@@ -510,37 +517,37 @@ function EducationSection({ educations, showForm, editingId, onShowForm, onHideF
     <div className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
       <div className="flex items-center justify-between mb-5">
         <h2 className="font-bold text-[#1a1a2e] text-lg">Education</h2>
-        <button onClick={onShowForm} className="flex items-center gap-1.5 text-sm text-[#f04e23] hover:underline font-medium">
+        <button type="button" onClick={onShowForm} className="flex items-center gap-1.5 text-sm text-[#2563eb] hover:underline font-medium">
           <Plus className="w-3.5 h-3.5" /> Add
         </button>
       </div>
 
       {showForm && (
-        <div className="border border-orange-200 bg-orange-50 rounded-xl p-4 mb-5">
+        <div className="border border-teal-200 bg-teal-50 rounded-xl p-4 mb-5">
           <h3 className="font-semibold text-[#1a1a2e] mb-3 text-sm">{editingId ? 'Edit' : 'Add'} Education</h3>
           <div className="space-y-3">
-            <input value={form.institution} onChange={(e) => setForm({ ...form, institution: e.target.value })} placeholder="University / Institution *" className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#f04e23]" />
+            <input value={form.institution} onChange={(e) => setForm({ ...form, institution: e.target.value })} placeholder="University / Institution *" className="w-full border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2563eb]" />
             <div className="grid grid-cols-2 gap-3">
-              <input value={form.degree} onChange={(e) => setForm({ ...form, degree: e.target.value })} placeholder="Degree (e.g. B.Tech)" className="border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#f04e23]" />
-              <input value={form.field_of_study} onChange={(e) => setForm({ ...form, field_of_study: e.target.value })} placeholder="Field of Study" className="border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#f04e23]" />
+              <input value={form.degree} onChange={(e) => setForm({ ...form, degree: e.target.value })} placeholder="Degree (e.g. B.Tech)" className="border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2563eb]" />
+              <input value={form.field_of_study} onChange={(e) => setForm({ ...form, field_of_study: e.target.value })} placeholder="Field of Study" className="border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2563eb]" />
             </div>
             <div className="grid grid-cols-2 gap-3">
-              <input type="number" value={form.start_year} onChange={(e) => setForm({ ...form, start_year: Number(e.target.value) })} placeholder="Start Year" className="border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#f04e23]" />
+              <input type="number" value={form.start_year} onChange={(e) => setForm({ ...form, start_year: Number(e.target.value) })} placeholder="Start Year" className="border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2563eb]" />
               {!form.is_current && (
-                <input type="number" value={form.end_year ?? ''} onChange={(e) => setForm({ ...form, end_year: Number(e.target.value) })} placeholder="End Year" className="border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#f04e23]" />
+                <input type="number" value={form.end_year ?? ''} onChange={(e) => setForm({ ...form, end_year: Number(e.target.value) })} placeholder="End Year" className="border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2563eb]" />
               )}
             </div>
             <div className="flex gap-4">
               <label className="flex items-center gap-2 text-sm cursor-pointer">
-                <input type="checkbox" checked={form.is_current} onChange={(e) => setForm({ ...form, is_current: e.target.checked })} className="accent-[#f04e23]" />
+                <input type="checkbox" checked={form.is_current} onChange={(e) => setForm({ ...form, is_current: e.target.checked })} className="accent-[#2563eb]" />{' '}
                 Currently studying
               </label>
-              <input value={form.grade} onChange={(e) => setForm({ ...form, grade: e.target.value })} placeholder="Grade / CGPA (optional)" className="flex-1 border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#f04e23]" />
+              <input value={form.grade} onChange={(e) => setForm({ ...form, grade: e.target.value })} placeholder="Grade / CGPA (optional)" className="flex-1 border border-gray-300 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:border-[#2563eb]" />
             </div>
           </div>
           <div className="flex gap-2 mt-3">
-            <button onClick={() => onSave(form, editingId ?? undefined)} className="cursor-pointer bg-[#f04e23] text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-orange-600 transition-colors">Save</button>
-            <button onClick={onHideForm} className="cursor-pointer border border-gray-300 text-gray-600 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50">Cancel</button>
+            <button type="button" onClick={() => onSave(form, editingId ?? undefined)} className="cursor-pointer bg-[#2563eb] text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-teal-700 transition-colors">Save</button>
+            <button type="button" onClick={onHideForm} className="cursor-pointer border border-gray-300 text-gray-600 px-4 py-2 rounded-lg text-sm font-semibold hover:bg-gray-50">Cancel</button>
           </div>
         </div>
       )}
@@ -565,8 +572,8 @@ function EducationSection({ educations, showForm, editingId, onShowForm, onHideF
                     </p>
                   </div>
                   <div className="flex gap-2 ml-2">
-                    <button onClick={() => onEdit(edu.id)} className="text-gray-400 hover:text-[#f04e23]"><Pencil className="w-3.5 h-3.5" /></button>
-                    <button onClick={() => onDelete(edu.id)} className="text-gray-400 hover:text-red-500"><Trash2 className="w-3.5 h-3.5" /></button>
+                    <button type="button" onClick={() => onEdit(edu.id)} className="text-gray-400 hover:text-[#2563eb]"><Pencil className="w-3.5 h-3.5" /></button>
+                    <button type="button" onClick={() => onDelete(edu.id)} className="text-gray-400 hover:text-red-500"><Trash2 className="w-3.5 h-3.5" /></button>
                   </div>
                 </div>
               </div>

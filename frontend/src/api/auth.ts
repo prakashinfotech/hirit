@@ -2,7 +2,7 @@ import apiClient, { tokenStorage } from './client';
 import type { AuthResponse, RegisterData, User } from '../types';
 
 const BASE = '/api/auth';
-const MOCK_USER_KEY = 'foundit_demo_user';
+const MOCK_USER_KEY = 'hirit_demo_user';
 
 // Maps backend user/profile shape → frontend User type
 function normalizeUser(raw: any): User {

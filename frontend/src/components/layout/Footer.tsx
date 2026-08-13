@@ -53,9 +53,9 @@ const ACCORDION_ITEMS: AccordionItem[] = [
     label: 'Company Info',
     hasChevron: true,
     links: [
-      { label: 'About Foundit', to: '/about' },
+      { label: 'About Hirit', to: '/about' },
       { label: 'Press & Media', to: '/press' },
-      { label: 'Careers at Foundit', to: '/careers' },
+      { label: 'Careers at Hirit', to: '/careers' },
       { label: 'Contact Us', to: '/contact' },
     ],
   },
@@ -113,11 +113,11 @@ const SocialIcons = {
 };
 
 const SOCIAL_LINKS = [
-  { Icon: SocialIcons.Facebook, href: 'https://facebook.com/founditindia', label: 'Facebook' },
-  { Icon: SocialIcons.Twitter, href: 'https://twitter.com/foundit_in', label: 'Twitter' },
-  { Icon: SocialIcons.LinkedIn, href: 'https://linkedin.com/company/foundit-in', label: 'LinkedIn' },
-  { Icon: SocialIcons.Instagram, href: 'https://instagram.com/foundit_in', label: 'Instagram' },
-  { Icon: SocialIcons.YouTube, href: 'https://youtube.com/foundit', label: 'YouTube' },
+  { Icon: SocialIcons.Facebook, href: 'https://facebook.com/Hirit', label: 'Facebook' },
+  { Icon: SocialIcons.Twitter, href: 'https://twitter.com/Hirit', label: 'Twitter' },
+  { Icon: SocialIcons.LinkedIn, href: 'https://linkedin.com/company/Hirit', label: 'LinkedIn' },
+  { Icon: SocialIcons.Instagram, href: 'https://instagram.com/Hirit', label: 'Instagram' },
+  { Icon: SocialIcons.YouTube, href: 'https://youtube.com/Hirit', label: 'YouTube' },
 ];
 
 function AccordionSection({ item }: { item: AccordionItem }) {
@@ -170,11 +170,63 @@ export default function Footer() {
     <footer className="bg-[#1a1a2e] text-white">
       <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-10 lg:flex-row">
-          {/* LEFT COLUMN — Accordion sections (~60%) */}
-          <div className="flex-1 lg:max-w-[60%]">
-            {ACCORDION_ITEMS.map((item) => (
-              <AccordionSection key={item.label} item={item} />
-            ))}
+          {/* LEFT COLUMN — Responsive Mobile Accordion & Desktop Columns */}
+          <div className="flex-1 lg:max-w-[62%]">
+            {/* Mobile View: Accordion */}
+            <div className="lg:hidden">
+              {ACCORDION_ITEMS.map((item) => (
+                <AccordionSection key={item.label} item={item} />
+              ))}
+            </div>
+
+            {/* Desktop View: Grid Columns */}
+            <div className="hidden lg:grid lg:grid-cols-4 gap-x-8 gap-y-6">
+              {/* Col 1 */}
+              <div>
+                <h3 className="text-sm font-bold text-gray-200 mb-4">Job Seekers</h3>
+                <ul className="flex flex-col gap-2.5">
+                  <li><Link to="/jobs" className="text-xs text-gray-400 hover:text-white transition-colors">Search Jobs</Link></li>
+                  <li><Link to="/dashboard/alerts" className="text-xs text-gray-400 hover:text-white transition-colors">Job Alerts</Link></li>
+                  <li><Link to="/dashboard/saved" className="text-xs text-gray-400 hover:text-white transition-colors">Saved Jobs</Link></li>
+                  <li><Link to="/dashboard/applied" className="text-xs text-gray-400 hover:text-white transition-colors">Applied Jobs</Link></li>
+                  <li><Link to="/dashboard/resume" className="text-xs text-gray-400 hover:text-white transition-colors">Resume Manager</Link></li>
+                  <li><Link to="/career-advice" className="text-xs text-gray-400 hover:text-white transition-colors">Career Advice</Link></li>
+                </ul>
+              </div>
+
+              {/* Col 2 */}
+              <div>
+                <h3 className="text-sm font-bold text-gray-200 mb-4">Employers</h3>
+                <ul className="flex flex-col gap-2.5">
+                  <li><Link to="/employer/post-job" className="text-xs text-gray-400 hover:text-white transition-colors">Post a Job</Link></li>
+                  <li><Link to="/employer/jobs" className="text-xs text-gray-400 hover:text-white transition-colors">My Job Listings</Link></li>
+                  <li><Link to="/employer/dashboard" className="text-xs text-gray-400 hover:text-white transition-colors">View Applicants</Link></li>
+                </ul>
+              </div>
+
+              {/* Col 3 */}
+              <div>
+                <h3 className="text-sm font-bold text-gray-200 mb-4">IT Jobs</h3>
+                <ul className="flex flex-col gap-2.5">
+                  <li><Link to="/jobs?category=Python+Developer" className="text-xs text-gray-400 hover:text-white transition-colors">Python Developer</Link></li>
+                  <li><Link to="/jobs?category=React+Developer" className="text-xs text-gray-400 hover:text-white transition-colors">React Developer</Link></li>
+                  <li><Link to="/jobs?category=Java+Developer" className="text-xs text-gray-400 hover:text-white transition-colors">Java Developer</Link></li>
+                  <li><Link to="/jobs?category=DevOps" className="text-xs text-gray-400 hover:text-white transition-colors">DevOps</Link></li>
+                  <li><Link to="/jobs?category=Data+Science" className="text-xs text-gray-400 hover:text-white transition-colors">Data Science</Link></li>
+                </ul>
+              </div>
+
+              {/* Col 4 */}
+              <div>
+                <h3 className="text-sm font-bold text-gray-200 mb-4">Company Info</h3>
+                <ul className="flex flex-col gap-2.5">
+                  <li><Link to="/about" className="text-xs text-gray-400 hover:text-white transition-colors">About Hirit</Link></li>
+                  <li><Link to="/press" className="text-xs text-gray-400 hover:text-white transition-colors">Press & Media</Link></li>
+                  <li><Link to="/careers" className="text-xs text-gray-400 hover:text-white transition-colors">Careers at Hirit</Link></li>
+                  <li><Link to="/contact" className="text-xs text-gray-400 hover:text-white transition-colors">Contact Us</Link></li>
+                </ul>
+              </div>
+            </div>
           </div>
 
           {/* RIGHT COLUMN (~40%) */}
@@ -184,7 +236,7 @@ export default function Footer() {
               <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-gray-500">
                 Selected Country
               </p>
-              <select className="rounded-md border border-white/20 bg-[#1a1a2e] px-3 py-2 text-sm text-gray-300 outline-none focus:border-[#7c3aed]">
+              <select className="rounded-md border border-white/20 bg-[#1a1a2e] px-3 py-2 text-sm text-gray-300 outline-none focus:border-[#2563eb]">
                 <option value="india">India</option>
                 <option value="uae">UAE</option>
                 <option value="singapore">Singapore</option>
@@ -209,10 +261,10 @@ export default function Footer() {
               <div className="flex items-center gap-2">
                 <Mail className="h-4 w-4 shrink-0 text-gray-400" />
                 <a
-                  href="mailto:info@foundit.in"
+                  href="mailto:info@Hirit.in"
                   className="text-xs text-gray-300 hover:text-white transition-colors"
                 >
-                  info@foundit.in
+                  info@Hirit.in
                 </a>
               </div>
             </div>
@@ -226,7 +278,7 @@ export default function Footer() {
                 <a
                   href="#"
                   aria-label="Download on the App Store"
-                  className="flex items-center gap-1.5 rounded-md border border-white/20 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:border-[#7c3aed] hover:text-[#7c3aed]"
+                  className="flex items-center gap-1.5 rounded-md border border-white/20 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:border-[#2563eb] hover:text-[#2563eb]"
                 >
                   <svg viewBox="0 0 24 24" fill="currentColor" className="h-3.5 w-3.5">
                     <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
@@ -236,7 +288,7 @@ export default function Footer() {
                 <a
                   href="#"
                   aria-label="Get it on Google Play"
-                  className="flex items-center gap-1.5 rounded-md border border-white/20 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:border-[#7c3aed] hover:text-[#7c3aed]"
+                  className="flex items-center gap-1.5 rounded-md border border-white/20 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:border-[#2563eb] hover:text-[#2563eb]"
                 >
                   <svg viewBox="0 0 24 24" fill="currentColor" className="h-3.5 w-3.5">
                     <path d="M3.18 23.76c.3.17.64.24.99.19l12.6-7.26-2.75-2.75-10.84 9.82zM.5 1.1C.19 1.42 0 1.9 0 2.52v18.96c0 .62.19 1.1.5 1.42l.08.07L10.67 12.5v-.23L.58 1.03.5 1.1zM20.55 10.3L17.3 8.44l-3.08 3.08 3.08 3.08 3.27-1.88c.93-.54.93-1.42 0-1.96l.01.01-.03.53zM4.17.19L16.77 7.44l-2.75 2.75L3.18.36C3.52.14 3.88.05 4.17.19z"/>
@@ -256,7 +308,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-gray-400 transition-all hover:border-[#7c3aed] hover:bg-[#7c3aed]/20 hover:text-white"
+                    className="flex h-8 w-8 items-center justify-center rounded-full border border-white/20 text-gray-400 transition-all hover:border-[#2563eb] hover:bg-[#2563eb]/20 hover:text-white"
                   >
                     <Icon />
                   </a>
@@ -283,7 +335,7 @@ export default function Footer() {
             <span>|</span>
           </div>
           <p className="text-[11px] text-gray-500 whitespace-nowrap">
-            &copy; 2026 foundit | All rights Reserved
+            &copy; 2026 Hirit | All rights Reserved
           </p>
         </div>
       </div>

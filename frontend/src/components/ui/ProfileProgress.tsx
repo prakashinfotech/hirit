@@ -14,7 +14,7 @@ export default function ProfileProgress({ percentage, className }: ProfileProgre
   const pct = Math.min(100, Math.max(0, Math.round(percentage)));
 
   const barColor =
-    pct < 40 ? 'bg-red-400' : pct < 70 ? 'bg-yellow-400' : 'bg-[#f04e23]';
+    pct < 40 ? 'bg-red-400' : pct < 70 ? 'bg-yellow-400' : 'bg-[#2563eb]';
 
   return (
     <div
@@ -29,7 +29,7 @@ export default function ProfileProgress({ percentage, className }: ProfileProgre
         <span
           className={cn(
             'text-xs font-bold',
-            pct < 40 ? 'text-red-500' : pct < 70 ? 'text-yellow-600' : 'text-[#f04e23]',
+            pct < 40 ? 'text-red-500' : pct < 70 ? 'text-yellow-600' : 'text-[#2563eb]',
           )}
         >
           {pct}%

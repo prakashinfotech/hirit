@@ -54,7 +54,7 @@ function RecentJobRow({ job }: { job: Job }) {
         <p className="text-xs text-gray-400">{job.location}</p>
       </td>
       <td className="px-4 py-3 text-center">
-        <span className="inline-flex h-6 min-w-[24px] items-center justify-center rounded-full bg-orange-100 px-2 text-xs font-semibold text-[#f04e23]">
+        <span className="inline-flex h-6 min-w-[24px] items-center justify-center rounded-full bg-teal-100 px-2 text-xs font-semibold text-[#2563eb]">
           {job.applications_count ?? 0}
         </span>
       </td>
@@ -73,7 +73,7 @@ function RecentJobRow({ job }: { job: Job }) {
       <td className="py-3 pl-4 text-right">
         <Link
           to={`/employer/jobs/${job.id}/applicants`}
-          className="text-xs font-medium text-[#f04e23] transition-opacity hover:opacity-70"
+          className="text-xs font-medium text-[#2563eb] transition-opacity hover:opacity-70"
         >
           View Applicants →
         </Link>
@@ -170,9 +170,9 @@ export default function EmployerDashboardPage() {
     {
       label: 'Total Applicants',
       value: data?.total_applications_received ?? 0,
-      icon: <Users className="h-6 w-6 text-[#f04e23]" />,
-      colorClass: 'text-[#f04e23]',
-      bgClass: 'bg-orange-50',
+      icon: <Users className="h-6 w-6 text-[#2563eb]" />,
+      colorClass: 'text-[#2563eb]',
+      bgClass: 'bg-teal-50',
       subtitle: `+${data?.new_applications_today ?? 0} today`,
     },
     {
@@ -188,9 +188,9 @@ export default function EmployerDashboardPage() {
       value: data?.company
         ? data.top_performing_jobs.reduce((sum, j) => sum + (j.views_count ?? 0), 0)
         : 0,
-      icon: <Eye className="h-6 w-6 text-purple-600" />,
-      colorClass: 'text-purple-600',
-      bgClass: 'bg-purple-50',
+      icon: <Eye className="h-6 w-6 text-blue-600" />,
+      colorClass: 'text-blue-600',
+      bgClass: 'bg-blue-50',
       subtitle: 'Across all jobs',
     },
   ];
@@ -208,7 +208,7 @@ export default function EmployerDashboardPage() {
         <button
           type="button"
           onClick={() => navigate('/employer/post-job')}
-          className="inline-flex items-center gap-2 rounded-lg bg-[#f04e23] px-5 py-2.5 text-sm font-semibold text-white shadow-md transition-opacity hover:opacity-90"
+          className="inline-flex items-center gap-2 rounded-lg bg-[#2563eb] px-5 py-2.5 text-sm font-semibold text-white shadow-md transition-opacity hover:opacity-90"
         >
           <PlusCircle className="h-4 w-4" />
           Post a New Job
@@ -230,7 +230,7 @@ export default function EmployerDashboardPage() {
               <h2 className="text-base font-semibold text-[#1a1a2e]">My Recent Jobs</h2>
               <Link
                 to="/employer/jobs"
-                className="flex items-center gap-1 text-xs font-medium text-[#f04e23] transition-opacity hover:opacity-70"
+                className="flex items-center gap-1 text-xs font-medium text-[#2563eb] transition-opacity hover:opacity-70"
               >
                 View all <ArrowRight className="h-3.5 w-3.5" />
               </Link>
@@ -242,7 +242,7 @@ export default function EmployerDashboardPage() {
                 <button
                   type="button"
                   onClick={() => navigate('/employer/post-job')}
-                  className="font-medium text-[#f04e23] hover:underline"
+                  className="font-medium text-[#2563eb] hover:underline"
                 >
                   Post your first job
                 </button>
@@ -284,7 +284,7 @@ export default function EmployerDashboardPage() {
               <h2 className="text-base font-semibold text-[#1a1a2e]">Recent Applicants</h2>
               <Link
                 to="/employer/jobs"
-                className="flex items-center gap-1 text-xs font-medium text-[#f04e23] transition-opacity hover:opacity-70"
+                className="flex items-center gap-1 text-xs font-medium text-[#2563eb] transition-opacity hover:opacity-70"
               >
                 View all <ArrowRight className="h-3.5 w-3.5" />
               </Link>

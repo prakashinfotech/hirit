@@ -33,7 +33,7 @@ export default function Spinner({ size = 'md', fullPage = false, className }: Sp
       role="status"
       aria-label="Loading"
       className={cn(
-        'inline-block animate-spin rounded-full border-[#f04e23] border-t-transparent',
+        'inline-block animate-spin rounded-full border-[#2563eb] border-t-transparent',
         SIZE_CLASSES[size],
         className,
       )}

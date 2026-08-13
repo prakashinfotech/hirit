@@ -32,7 +32,7 @@ interface JobCardProps {
 const JOB_TYPE_COLORS: Record<string, string> = {
   'full-time': 'bg-green-100 text-green-700',
   'part-time': 'bg-blue-100 text-blue-700',
-  'contract': 'bg-purple-100 text-purple-700',
+  'contract': 'bg-blue-100 text-blue-700',
   'internship': 'bg-yellow-100 text-yellow-700',
   'freelance': 'bg-pink-100 text-pink-700',
   'temporary': 'bg-gray-100 text-gray-600',
@@ -129,7 +129,7 @@ export default function JobCard({
       onClick={handleCardClick}
       className={cn(
         'group relative flex cursor-pointer flex-col gap-3 rounded-xl border border-[#e0e0e0] bg-white p-5 shadow-sm',
-        'transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-orange-200',
+        'transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md hover:border-teal-200',
         className,
       )}
     >
@@ -163,8 +163,8 @@ export default function JobCard({
             onClick={handleSaveClick}
             aria-label={isActuallySaved ? 'Unsave job' : 'Save job'}
             className={cn(
-              'flex-shrink-0 cursor-pointer rounded-full p-1.5 transition-colors hover:bg-orange-50',
-              isActuallySaved ? 'text-[#f04e23]' : 'text-gray-300 hover:text-[#f04e23]',
+              'flex-shrink-0 cursor-pointer rounded-full p-1.5 transition-colors hover:bg-teal-50',
+              isActuallySaved ? 'text-[#2563eb]' : 'text-gray-300 hover:text-[#2563eb]',
             )}
           >
             <Heart
@@ -179,11 +179,11 @@ export default function JobCard({
       <Link
         to={`/jobs/${job.id}`}
         onClick={(e) => e.stopPropagation()}
-        className="text-lg font-semibold leading-snug text-[#1a1a2e] transition-colors group-hover:text-[#f04e23]"
+        className="text-lg font-semibold leading-snug text-[#1a1a2e] transition-colors group-hover:text-[#2563eb]"
       >
         {job.title}
         {job.is_featured && (
-          <span className="ml-2 rounded-full border border-orange-200 bg-orange-50 px-1.5 py-0.5 text-xs font-medium text-[#f04e23]">
+          <span className="ml-2 rounded-full border border-teal-200 bg-teal-50 px-1.5 py-0.5 text-xs font-medium text-[#2563eb]">
             Featured
           </span>
         )}
@@ -253,7 +253,7 @@ export default function JobCard({
           <Link
             to={`/jobs/${job.id}`}
             onClick={(e) => e.stopPropagation()}
-            className="cursor-pointer rounded-md bg-[#f04e23] px-4 py-1.5 text-sm font-medium text-white transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f04e23] focus-visible:ring-offset-2"
+            className="cursor-pointer rounded-md bg-[#2563eb] px-4 py-1.5 text-sm font-medium text-white transition-opacity hover:opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2563eb] focus-visible:ring-offset-2"
           >
             Apply Now
           </Link>

@@ -8,14 +8,14 @@ const SOLUTIONS = [
     title: 'Resume Writing',
     description: 'Get a professionally crafted resume that beats ATS filters and grabs recruiter attention. Our experts tailor every line to your target role.',
     badge: 'Most Popular',
-    color: 'bg-orange-50 text-[#f04e23]',
+    color: 'bg-teal-50 text-[#2563eb]',
   },
   {
     icon: Users,
     title: 'LinkedIn Profile Optimization',
     description: 'Turn your LinkedIn into a job magnet. We optimize headlines, summaries, and keywords so recruiters find you first.',
     badge: 'Top Rated',
-    color: 'bg-purple-50 text-[#7c3aed]',
+    color: 'bg-blue-50 text-[#2563eb]',
   },
   {
     icon: MessageSquare,
@@ -55,7 +55,7 @@ export default function CareerSolutions() {
       {/* Hero */}
       <div className="bg-white border-b border-[#e0e0e0] pt-[60px]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-14 text-center">
-          <span className="inline-block rounded-full bg-orange-50 px-4 py-1 text-xs font-semibold text-[#f04e23] mb-4">
+          <span className="inline-block rounded-full bg-teal-50 px-4 py-1 text-xs font-semibold text-[#2563eb] mb-4">
             Career Solutions
           </span>
           <h1 className="text-4xl font-extrabold text-[#1a1a2e] mb-4">
@@ -81,7 +81,7 @@ export default function CareerSolutions() {
               <div className="flex items-center gap-2 mb-2">
                 <h3 className="font-bold text-[#1a1a2e] text-lg">{s.title}</h3>
                 {s.badge && (
-                  <span className="rounded-full bg-orange-50 border border-orange-200 px-2 py-0.5 text-xs font-semibold text-[#f04e23]">
+                  <span className="rounded-full bg-teal-50 border border-teal-200 px-2 py-0.5 text-xs font-semibold text-[#2563eb]">
                     {s.badge}
                   </span>
                 )}
@@ -89,7 +89,7 @@ export default function CareerSolutions() {
               <p className="text-gray-500 text-sm leading-relaxed">{s.description}</p>
               <button
                 type="button"
-                className="cursor-pointer mt-5 w-full rounded-lg border border-[#7c3aed] py-2 text-sm font-semibold text-[#7c3aed] hover:bg-purple-50 transition-colors"
+                className="cursor-pointer mt-5 w-full rounded-lg border border-[#2563eb] py-2 text-sm font-semibold text-[#2563eb] hover:bg-blue-50 transition-colors"
                 onClick={() => alert('Coming soon!')}
               >
                 Learn More
@@ -99,12 +99,12 @@ export default function CareerSolutions() {
         </div>
 
         {/* CTA banner */}
-        <div className="mt-12 rounded-2xl bg-gradient-to-r from-[#7c3aed] to-[#f04e23] p-8 text-center text-white">
+        <div className="mt-12 rounded-2xl bg-gradient-to-r from-[#2563eb] to-[#2563eb] p-8 text-center text-white">
           <h2 className="text-2xl font-extrabold mb-2">Not sure where to start?</h2>
-          <p className="text-purple-100 mb-6">Talk to a career expert for free. No commitments.</p>
+          <p className="text-blue-100 mb-6">Talk to a career expert for free. No commitments.</p>
           <button
             type="button"
-            className="cursor-pointer inline-block rounded-full bg-white px-8 py-3 text-sm font-bold text-[#7c3aed] hover:bg-purple-50 transition-colors"
+            className="cursor-pointer inline-block rounded-full bg-white px-8 py-3 text-sm font-bold text-[#2563eb] hover:bg-blue-50 transition-colors"
             onClick={() => alert('Coming soon!')}
           >
             Book a Free Consultation

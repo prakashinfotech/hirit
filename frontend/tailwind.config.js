@@ -4,9 +4,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        'foundit-orange': '#f04e23',
-        'foundit-navy': '#1a1a2e',
-        'foundit-gray': '#f5f5f5',
+        'brand-primary': '#2563eb',
+        'brand-primary-hover': '#1d4ed8',
+        'brand-dark': '#1f2937',
+        'brand-bg': '#f9fafb',
+        // Legacy fallbacks
+        'foundit-orange': '#2563eb',
+        'foundit-navy': '#1f2937',
+        'foundit-gray': '#f9fafb',
       },
     },
   },

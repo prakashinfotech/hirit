@@ -36,7 +36,7 @@ export default function SavedJobs() {
         </div>
         <Link
           to="/jobs"
-          className="text-sm font-semibold text-[#f04e23] border border-orange-200 bg-orange-50 px-4 py-2 rounded-lg hover:bg-orange-100 transition-colors"
+          className="text-sm font-semibold text-[#2563eb] border border-teal-200 bg-teal-50 px-4 py-2 rounded-lg hover:bg-teal-100 transition-colors"
         >
           Browse Jobs
         </Link>
@@ -59,7 +59,7 @@ export default function SavedJobs() {
           </p>
           <Link
             to="/jobs"
-            className="bg-[#f04e23] text-white font-semibold px-6 py-2.5 rounded-lg hover:bg-orange-600 transition-colors text-sm"
+            className="bg-[#2563eb] text-white font-semibold px-6 py-2.5 rounded-lg hover:bg-teal-700 transition-colors text-sm"
           >
             Start Exploring
           </Link>

@@ -151,8 +151,8 @@ export default function ResumePage() {
         /* ── Resume exists: show card ── */
         <div className="rounded-xl border border-[#e0e0e0] bg-white p-6 shadow-sm">
           <div className="flex items-start gap-4">
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-orange-50">
-              <FileText className="h-7 w-7 text-[#f04e23]" />
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-teal-50">
+              <FileText className="h-7 w-7 text-[#2563eb]" />
             </div>
 
             <div className="min-w-0 flex-1">
@@ -179,7 +179,7 @@ export default function ResumePage() {
               </div>
               <div className="h-1.5 w-full overflow-hidden rounded-full bg-gray-100">
                 <div
-                  className="h-full bg-[#f04e23] transition-all duration-300"
+                  className="h-full bg-[#2563eb] transition-all duration-300"
                   style={{ width: `${uploadProgress}%` }}
                 />
               </div>
@@ -202,7 +202,7 @@ export default function ResumePage() {
               type="button"
               onClick={() => fileInputRef.current?.click()}
               disabled={isUploading || isDeleting}
-              className="inline-flex items-center gap-2 rounded-lg border border-[#e0e0e0] px-4 py-2.5 text-sm font-medium text-[#1a1a2e] transition-colors hover:border-[#f04e23] hover:text-[#f04e23] disabled:cursor-not-allowed disabled:opacity-50"
+              className="inline-flex items-center gap-2 rounded-lg border border-[#e0e0e0] px-4 py-2.5 text-sm font-medium text-[#1a1a2e] transition-colors hover:border-[#2563eb] hover:text-[#2563eb] disabled:cursor-not-allowed disabled:opacity-50"
             >
               {isUploading ? (
                 <>
@@ -259,16 +259,16 @@ export default function ResumePage() {
             className={cn(
               'flex cursor-pointer flex-col items-center justify-center gap-4 rounded-2xl border-2 border-dashed px-8 py-16 text-center transition-colors',
               dragOver
-                ? 'border-[#f04e23] bg-orange-50'
-                : 'border-[#e0e0e0] bg-white hover:border-[#f04e23]/60 hover:bg-orange-50/30',
+                ? 'border-[#2563eb] bg-teal-50'
+                : 'border-[#e0e0e0] bg-white hover:border-[#2563eb]/60 hover:bg-teal-50/30',
               isUploading && 'pointer-events-none opacity-70',
             )}
           >
             {isUploading ? (
               <Spinner size="lg" />
             ) : (
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-orange-100">
-                <CloudUpload className="h-8 w-8 text-[#f04e23]" />
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-teal-100">
+                <CloudUpload className="h-8 w-8 text-[#2563eb]" />
               </div>
             )}
 
@@ -284,7 +284,7 @@ export default function ResumePage() {
             </div>
 
             {!isUploading && (
-              <span className="rounded-lg bg-[#f04e23] px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-opacity hover:opacity-90">
+              <span className="rounded-lg bg-[#2563eb] px-5 py-2.5 text-sm font-medium text-white shadow-sm transition-opacity hover:opacity-90">
                 Browse Files
               </span>
             )}
@@ -299,7 +299,7 @@ export default function ResumePage() {
               </div>
               <div className="h-2 w-full overflow-hidden rounded-full bg-gray-100">
                 <div
-                  className="h-full bg-[#f04e23] transition-all duration-300"
+                  className="h-full bg-[#2563eb] transition-all duration-300"
                   style={{ width: `${uploadProgress}%` }}
                 />
               </div>

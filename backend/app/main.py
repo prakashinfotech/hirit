@@ -17,12 +17,12 @@ logging.basicConfig(
     format="%(asctime)s | %(levelname)-7s | %(name)s | %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
 )
-logger = logging.getLogger("foundit.api")
+logger = logging.getLogger("hirit.api")
 
 app = FastAPI(
-    title="Foundit Clone API",
+    title="Hirit API",
     description=(
-        "Production-grade REST API for the Foundit.in job portal clone. "
+        "Production-grade REST API for the Hirit job portal. "
         "Supports job seekers and employers with full job search, applications, "
         "company profiles, alerts, and dashboard analytics."
     ),
@@ -96,7 +96,7 @@ async def health_check():
         content={
             "status": "ok",
             "version": "1.0.0",
-            "service": "Foundit Clone API",
+            "service": "Hirit API",
         },
     )
 
@@ -109,7 +109,7 @@ async def root():
     """Root endpoint — redirects to API docs."""
     return JSONResponse(
         content={
-            "message": "Welcome to Foundit Clone API",
+            "message": "Welcome to Hirit API",
             "docs": "/docs",
             "health": "/health",
         }
