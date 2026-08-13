@@ -1,6 +1,11 @@
 # 🚀 Hirit — Job Portal Platform
 
-Welcome to **Hirit** (pronounced *Hire-it*), a production-grade full-stack replica of a modern job search engine and applicant tracking system. This platform is built with **FastAPI**, **React 18 (TypeScript)**, and **Supabase (PostgreSQL 17, Auth, and Storage)**.
+[![Status](https://img.shields.io/badge/Status-Completed-success)](#)
+[![Frontend](https://img.shields.io/badge/Frontend-React_18_%2B_TypeScript-blue)](frontend)
+[![Backend](https://img.shields.io/badge/Backend-FastAPI-success)](backend)
+[![Database](https://img.shields.io/badge/Database-PostgreSQL_%2F_Supabase-336791)](backend/schema.sql)
+
+Welcome to **Hirit** (pronounced *Hire-it*), a full-stack replica of a job search engine and applicant tracking system built as a demo prototype and MVP (Minimum Viable Product). This platform is built with **FastAPI**, **React 18 (TypeScript)**, and **Supabase (PostgreSQL 17, Auth, and Storage)**.
 
 ---
 
@@ -12,8 +17,11 @@ Welcome to **Hirit** (pronounced *Hire-it*), a production-grade full-stack repli
 - [🛠️ Database Setup & Schema Migrations](#%EF%B8%8F-database-setup--schema-migrations)
 - [📡 API Usage & JSON Payloads](#-api-usage--json-payloads)
 - [⚙️ Setup & Installation](#%EF%B8%8F-setup--installation)
+- [🔑 Environment Variables](#-environment-variables)
+- [🔐 Local Dev Accounts](#-local-dev-accounts)
 - [🧪 Running Tests](#-running-tests)
 - [🔒 Security & Credential Hygiene](#-security--credential-hygiene)
+- [📌 Project Status](#-project-status)
 
 ---
 
@@ -222,14 +230,7 @@ venv\Scripts\activate          # Windows
 pip install -r requirements.txt
 cp .env.example .env
 ```
-Update your `backend/.env` file with your Supabase credentials:
-```env
-SUPABASE_URL=https://your-project-id.supabase.co
-SUPABASE_ANON_KEY=your-supabase-anon-key
-SUPABASE_SERVICE_KEY=your-supabase-service-role-key
-SECRET_KEY=your-jwt-secret-key-32-chars-minimum
-ALGORITHM=HS256
-```
+Update your `backend/.env` file with your Supabase and security credentials (see [Environment Variables](#-environment-variables) below for details).
 
 Start the FastAPI application:
 ```bash
@@ -243,18 +244,43 @@ cd ../frontend
 npm install
 cp .env.example .env
 ```
-Update your `frontend/.env` file:
-```env
-VITE_API_URL=http://localhost:8000
-VITE_SUPABASE_URL=https://your-project-id.supabase.co
-VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
-```
+Update your `frontend/.env` file (see [Environment Variables](#-environment-variables) below for details).
 
 Start the React development server:
 ```bash
 npm run dev
 ```
 Access the application at: `http://localhost:5173`
+
+---
+
+## 🔑 Environment Variables
+
+Every configuration file has a matching `.env.example` template: `backend/.env.example` and `frontend/.env.example`. Only the `.example` files are committed; the real, filled-in `.env` files are gitignored and must never be pushed to public repositories.
+
+### Backend Configurations (`backend/.env`)
+| Key | Example / Description |
+| :--- | :--- |
+| `SUPABASE_URL` | `https://your-project-id.supabase.co` |
+| `SUPABASE_ANON_KEY` | `your-supabase-anon-key` |
+| `SUPABASE_SERVICE_KEY` | `your-supabase-service-role-key` |
+| `SECRET_KEY` | `your-jwt-secret-key-32-chars-minimum` |
+| `ALGORITHM` | `HS256` |
+| `ACCESS_TOKEN_EXPIRE_MINUTES` | `30` (Default JWT token expiry time) |
+| `FRONTEND_URL` | `http://localhost:5173` (CORS permitted origin) |
+
+### Frontend Configurations (`frontend/.env`)
+| Key | Example / Description |
+| :--- | :--- |
+| `VITE_API_URL` | `http://localhost:8000` (FastAPI backend base URL) |
+| `VITE_SUPABASE_URL` | `https://your-project-id.supabase.co` |
+| `VITE_SUPABASE_ANON_KEY` | `your-supabase-anon-key` |
+
+---
+
+## 🔐 Local Dev Accounts
+
+No user credentials or pre-configured accounts are published in this repository. Setup your own local test accounts by signing up through the web application's registration portal at `http://localhost:5173/register` as either a **Job Seeker** or an **Employer**.
 
 ---
 
@@ -282,3 +308,9 @@ All **117 tests** pass cleanly with 100% green integrity status.
 > [!IMPORTANT]
 > - **Environment Files**: `.env` files are ignored by git in [.gitignore](.gitignore). Never force commit them.
 > - **Service Role Key**: Keep the `SUPABASE_SERVICE_KEY` strictly inside the backend environment. Never expose it to the frontend codebase.
+
+---
+
+## 📌 Project Status
+
+🚧 **MVP Demo Prototype** — This project is an actively developed demonstration prototype. It showcases the core authentication pipeline, frontend components, and dashboard interfaces configured for testing and evaluation purposes.
