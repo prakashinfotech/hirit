@@ -1,30 +1,68 @@
-# 🚀 Hirit — Job Portal Platform
+# Hirit
 
-[![Status](https://img.shields.io/badge/Status-Active-success)](#)
-[![Frontend](https://img.shields.io/badge/Frontend-React_18_%2B_TypeScript-blue)](frontend)
-[![Backend](https://img.shields.io/badge/Backend-FastAPI-success)](backend)
-[![Database](https://img.shields.io/badge/Database-PostgreSQL_%2F_Supabase-336791)](backend/schema.sql)
+**Simplify your job search, accelerate your career.**
 
-Welcome to **Hirit** (pronounced *Hire-it*), a full-stack job search and applicant tracking platform. This repository hosts a job seeker portal platform focusing on advanced job search, resume uploads, and application tracking. This platform is built with **FastAPI**, **React 18 (TypeScript)**, and **Supabase (PostgreSQL 17, Auth, and Storage)**.
+Hirit — a modern full-stack job search and seeker dashboard portal for the Indian market. Zero-brokerage/free job listings, verified candidates, customized profiles, and seeker workspaces. Built by Prakash Software Solutions (PSSPL) with React 18, TypeScript, Vite, FastAPI (Python) & Supabase.
+
+**Website:** [https://www.prakashinfotech.com](https://www.prakashinfotech.com)
+
+[![React](https://img.shields.io/badge/React-18-blue?logo=react)](https://react.dev/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.111-success?logo=fastapi)](https://fastapi.tiangolo.com/)
+[![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-3ECF8E?logo=supabase)](https://supabase.com/)
 
 ---
 
 ## 📋 Table of Contents
-- [🚀 The Hirit Application Lifecycle Flow](#-the-hirit-application-lifecycle-flow)
-- [📊 System Architecture Diagram](#-system-architecture-diagram)
-- [📦 Tech Stack](#-tech-stack)
-- [🗂️ Project Structure](#%EF%B8%8F-project-structure)
-- [🛠️ Database Setup & Schema Migrations](#%EF%B8%8F-database-setup--schema-migrations)
-- [⚙️ Setup & Installation](#%EF%B8%8F-setup--installation)
+- [⚠️ The Problem](#the-problem)
+- [💡 The Solution](#the-solution)
+- [⚙️ Features](#features)
+- [🚀 The Hirit Application Lifecycle Flow](#the-hirit-application-lifecycle-flow)
+- [📊 Architecture & Application Flow](#architecture--application-flow)
+- [📦 Tech Stack](#tech-stack)
+- [📋 Prerequisites](#prerequisites)
+- [🛠️ Getting Started](#getting-started)
 - [🔑 Environment Variables](#-environment-variables)
-- [🔐 Local Dev Accounts](#-local-dev-accounts)
-- [🧪 Running Tests](#-running-tests)
-- [🔒 Security & Credential Hygiene](#-security--credential-hygiene)
-- [📌 Project Status](#-project-status)
+- [📁 Project Structure](#-project-structure)
+- [📡 API Endpoints](#api-endpoints)
+- [🧪 Development & Testing](#development)
+- [🔒 Security](#security)
+- [👥 Contributing](#contributing)
+- [📄 License](#license)
+- [🏢 About PSSPL](#about-psspl)
+- [📬 Contact](#-contact)
 
 ---
 
-## 🚀 The Hirit Application Lifecycle Flow
+## The Problem
+
+Recruitment in India is often slow, expensive, and opaque. Job seekers struggle with massive portal subscription fees, unverified job listings, and spam applications, while trying to stand out in crowded candidate pools. Traditional platforms lack structured profiles that combine skills, experience, and verified resume tracking in one place, leaving applicants in the dark about their application status.
+
+## The Solution
+
+Hirit makes the job search process direct, transparent, and functional:
+- **Verified Job Listings**: Advanced job search filters based on category, location, salary range, experience level, and remote preferences.
+- **Structured Seeker Profiles**: Custom profiles containing educational milestones, work experience history, and verified skills.
+- **Resume Uploads**: Integrated storage hosting resume documents (PDF/Word) directly via Supabase Storage.
+- **Application Status Tracking**: A unified seeker dashboard to monitor and manage all active job applications.
+
+---
+
+## Features
+
+| Category | Details |
+|---|---|
+| **Authentication** | Secure signup/login via Supabase Auth with custom JWT session tokens |
+| **Profile Manager** | Configure personal bio, location, education history, and work experience milestones |
+| **Skills Configuration** | Map professional skills to user profile for simplified profiling |
+| **Advanced Job Search** | Filter jobs by title, location, category, remote setup, and salary brackets |
+| **Resume Uploads** | Upload and update PDF/Word resumes (max 5MB) securely |
+| **Seeker Dashboard** | Monitor application statuses, saved jobs, and profile statistics in one view |
+| **Automated Testing** | Comprehensive backend verification suite with isolated database mocks |
+| **Responsive UI** | Mobile-first centered layouts with glassmorphic styling |
+
+---
+
+## The Hirit Application Lifecycle Flow
 
 ### Step 1: Secure Authentication
 1. Users register at `/register` as a **Job Seeker**.
@@ -47,7 +85,9 @@ Welcome to **Hirit** (pronounced *Hire-it*), a full-stack job search and applica
 
 ---
 
-## 📊 System Architecture Diagram
+## Architecture & Application Flow
+
+Hirit follows a layered full-stack architecture. The React SPA frontend handles the user experience, the FastAPI backend API handles security and business rules, and the Supabase PostgreSQL database serves as the persistent data layer.
 
 ```mermaid
 graph TD
@@ -81,89 +121,53 @@ graph TD
 
 ---
 
-## 📦 Tech Stack
+## Tech Stack
 
-### Backend API
-* **FastAPI (v0.111)**: Async REST framework.
-* **Uvicorn (v0.29)**: ASGI server with reload utility.
-* **Pydantic (v2.7)**: Serialization and request-body validation.
-* **Supabase Python SDK (v2.4.6)**: Remote database and auth SDK.
-
-### Frontend Client
-* **React 18 + TypeScript + Vite**: Responsive SPA interface.
-* **Tailwind CSS**: Core glassmorphic design system.
-* **TanStack Query v5**: Server-state management and caching.
-* **Zustand**: Client state store.
-* **Lucide React**: Clean icons.
-
-### Database & Storage
-* **Supabase (PostgreSQL 17)**: High-performance relational database with **Row Level Security (RLS)** active on all 16 tables.
-* **Supabase Storage**: Object storage buckets for resumes and profile photos.
+| Layer | Technology |
+|---|---|
+| **Frontend** | React 18, TypeScript, Vite 5, Tailwind CSS |
+| **UI Components** | Lucide Icons |
+| **State Management** | Zustand, React Context API |
+| **Backend** | Python 3.11+, FastAPI (v0.111) |
+| **Authentication** | JWT Bearer tokens (python-jose) & Supabase Auth |
+| **Database** | PostgreSQL 17 (Supabase-hosted) |
+| **Object Storage** | Supabase Storage (for resume PDF management) |
+| **API Docs** | Swagger UI (FastAPI Auto-Generated) |
 
 ---
 
-## 🗂️ Project Structure
+## Prerequisites
 
-```
-hirit/
-├── backend/
-│   ├── app/
-│   │   ├── main.py               # FastAPI app definition
-│   │   ├── config.py             # Environment configurations
-│   │   ├── dependencies.py       # Authentication guard middleware
-│   │   ├── models/               # Pydantic data schemas
-│   │   ├── routers/              # Modular route endpoints
-│   │   └── services/             # Supabase clients
-│   ├── tests/                    # pytest backend test suite
-│   ├── schema.sql                # Complete database migration script
-│   └── requirements.txt
-│
-├── frontend/
-│   ├── src/
-│   │   ├── api/                  # Axios HTTP client endpoints
-│   │   ├── components/           # UI elements and layouts
-│   │   ├── context/              # Authentication context API
-│   │   ├── lib/                  # Utility config and helper scripts
-│   │   ├── pages/                # Home, Search, Detail, Dashboards
-│   │   └── types/                # TypeScript interface type definitions
-│   ├── README.md                 # Frontend installation guide
-│   └── vite.config.ts
-```
+Before you begin, ensure you have the following installed:
+
+| Tool | Version | Download |
+|---|---|---|
+| **Node.js** | v18+ | [nodejs.org](https://nodejs.org/) |
+| **Python** | 3.11+ | [python.org](https://www.python.org/) |
+| **Git** | Latest | [git-scm.com](https://git-scm.com/) |
+| **Supabase Account** | Free tier | [supabase.com](https://supabase.com/) |
 
 ---
 
-## 🛠️ Database Setup & Schema Migrations
-
-The database consists of **11 tables** managed securely in Supabase.
-
-### Schema Deployment Step
-1. Go to your **Supabase Dashboard** -> **SQL Editor**.
-2. Create a new query, paste the full contents of the database migration script: [backend/schema.sql](backend/schema.sql).
-3. Execute the query. This sets up all primary tables, constraints, foreign keys, and RLS guidelines.
-
----
-
-## ⚙️ Setup & Installation
-
-### Prerequisites
-- Python 3.11+
-- Node.js 18+
-- Active Supabase Project
-- Git
+## Getting Started
 
 ### 1. Clone the Repository
+
 ```bash
-git clone https://github.com/Vermaakshita/hirit-job-portal.git
-cd hirit-job-portal
+git clone https://github.com/prakashinfotech/hirit.git
+cd hirit
 ```
 
-### 2. Database Schema Setup
-Deploy the database tables before launching the services:
-1. Go to your **Supabase Dashboard** -> **SQL Editor**.
-2. Create a new query and paste the complete content of [backend/schema.sql](backend/schema.sql).
-3. Click **Run** to execute the query and initialize the 11 database tables and constraints.
+### 2. Set Up the Database (Supabase)
 
-### 3. Backend Service Setup
+1. Create a new project at [supabase.com](https://supabase.com/)
+2. Go to **SQL Editor** in your Supabase dashboard
+3. Copy the contents of [`backend/schema.sql`](backend/schema.sql) and run it
+4. This creates all required tables (profiles, jobs, applications, saved_jobs, education, etc.) and constraints
+5. Create a storage bucket in Supabase named `resumes` and set its access policy to public read
+
+### 3. Set Up the Backend (FastAPI)
+
 ```bash
 cd backend
 python -m venv venv
@@ -173,33 +177,53 @@ venv\Scripts\activate          # Windows
 pip install -r requirements.txt
 cp .env.example .env
 ```
-Update your `backend/.env` file with your Supabase and security credentials (see [Environment Variables](#-environment-variables) below for details).
 
-Start the FastAPI application:
+Update your `backend/.env` file with your credentials (see [Environment Variables](#-environment-variables) below):
+
+```env
+SUPABASE_URL=https://your-project-id.supabase.co
+SUPABASE_ANON_KEY=your-supabase-anon-key
+SUPABASE_SERVICE_KEY=your-supabase-service-role-key
+SECRET_KEY=your-jwt-secret-key-32-chars-minimum
+```
+
+Run the backend application server:
+
 ```bash
 uvicorn app.main:app --reload
 ```
-API Swagger Documentation: `http://localhost:8000/docs`
 
-### 4. Frontend Client Setup
+The API will start at `http://localhost:8000`. Swagger documentation is available at `http://localhost:8000/docs`.
+
+### 4. Set Up the Frontend (React)
+
 ```bash
 cd ../frontend
 npm install
 cp .env.example .env
 ```
-Update your `frontend/.env` file (see [Environment Variables](#-environment-variables) below for details).
 
-Start the React development server:
+Ensure your `frontend/.env` file has the correct endpoints:
+
+```env
+VITE_API_URL=http://localhost:8000
+VITE_SUPABASE_URL=https://your-project-id.supabase.co
+VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
+```
+
+Start the React client:
+
 ```bash
 npm run dev
 ```
-Access the application at: `http://localhost:5173`
+
+The frontend will start at `http://localhost:5173`.
 
 ---
 
 ## 🔑 Environment Variables
 
-Every configuration file has a matching `.env.example` template: `backend/.env.example` and `frontend/.env.example`. Only the `.example` files are committed; the real, filled-in `.env` files are gitignored and must never be pushed to public repositories.
+Every configuration file has a matching `.env.example` template. **Only the `.example` files are committed; the real, filled-in `.env` files are gitignored and must never be pushed.**
 
 ### Backend Configurations (`backend/.env`)
 | Key | Example / Description |
@@ -209,51 +233,131 @@ Every configuration file has a matching `.env.example` template: `backend/.env.e
 | `SUPABASE_SERVICE_KEY` | `your-supabase-service-role-key` |
 | `SECRET_KEY` | `your-jwt-secret-key-32-chars-minimum` |
 | `ALGORITHM` | `HS256` |
-| `ACCESS_TOKEN_EXPIRE_MINUTES` | `30` (Default JWT token expiry time) |
-| `FRONTEND_URL` | `http://localhost:5173` (CORS permitted origin) |
+| `ACCESS_TOKEN_EXPIRE_MINUTES` | `30` |
+| `FRONTEND_URL` | `http://localhost:5173` |
 
 ### Frontend Configurations (`frontend/.env`)
 | Key | Example / Description |
 | :--- | :--- |
-| `VITE_API_URL` | `http://localhost:8000` (FastAPI backend base URL) |
+| `VITE_API_URL` | `http://localhost:8000` |
 | `VITE_SUPABASE_URL` | `https://your-project-id.supabase.co` |
 | `VITE_SUPABASE_ANON_KEY` | `your-supabase-anon-key` |
 
 ---
 
-## 🔐 Local Dev Accounts
+## 📁 Project Structure
 
-No user credentials or pre-configured accounts are published in this repository. Setup your own local test accounts by signing up through the web application's registration portal at `http://localhost:5173/register` as a **Job Seeker**.
+```
+hirit/
+├── backend/                     # FastAPI App
+│   ├── app/
+│   │   ├── main.py              # FastAPI app definition
+│   │   ├── config.py            # Environment configurations
+│   │   ├── dependencies.py      # Authentication guard middleware
+│   │   ├── models/              # Pydantic schemas (user, job, application)
+│   │   ├── routers/             # API Router endpoints
+│   │   └── services/            # Supabase connection clients
+│   ├── tests/                   # pytest suite
+│   ├── schema.sql               # Database migration script
+│   └── requirements.txt
+│
+├── frontend/                    # React 18 SPA
+│   ├── src/
+│   │   ├── api/                 # Axios service layers
+│   │   ├── components/          # UI elements and layouts
+│   │   ├── context/             # Auth context wrappers
+│   │   ├── lib/                 # Configurations & utility functions
+│   │   ├── pages/               # Home, Search, Profile, Seeker dashboard
+│   │   └── types/               # TypeScript interfaces
+│   ├── README.md                # Frontend setup guide
+│   └── vite.config.ts
+```
 
 ---
 
-## 🧪 Running Tests
+## API Endpoints
 
-Hirit has a comprehensive backend test suite that runs isolated database mocks.
+The backend exposes these API groups (see full docs at `/docs`):
 
-Navigate to the `backend` directory and run the test suite:
+| Method | Endpoint | Description |
+|---|---|---|
+| `POST` | `/api/auth/register` | Register new seeker |
+| `POST` | `/api/auth/login` | Login with email + password |
+| `GET` | `/api/jobs` | List/search active job postings |
+| `GET` | `/api/jobs/{job_id}` | Get job detail |
+| `GET` | `/api/users/profile` | Get current user full profile |
+| `PUT` | `/api/users/profile` | Update profile fields |
+| `POST` | `/api/users/resume/upload` | Upload PDF resume to storage |
+| `POST` | `/api/applications/{job_id}` | Submit application for a job |
+| `GET` | `/api/applications/my` | Get current user's applications |
+
+---
+
+## Development
+
+### Frontend Commands
+
+```bash
+cd frontend
+npm run dev          # Start dev server
+npm run build        # Production build
+npm run typecheck    # TypeScript check
+```
+
+### Backend Commands
+
 ```bash
 cd backend
-pytest
+uvicorn app.main:app --reload    # Start API server
+pytest                           # Run test suite
+pytest --cov=app                 # Run tests with coverage
 ```
-
-**Verify Coverage:**
-```bash
-pytest --cov=app --cov-report=term-missing
-```
-
-All **117 tests** pass cleanly with 100% green integrity status.
 
 ---
 
-## 🔒 Security & Credential Hygiene
+## Security
 
-> [!IMPORTANT]
-> - **Environment Files**: `.env` files are ignored by git in [.gitignore](.gitignore). Never force commit them.
-> - **Service Role Key**: Keep the `SUPABASE_SERVICE_KEY` strictly inside the backend environment. Never expose it to the frontend codebase.
+- **Authentication**: JWT bearer tokens, encrypted password hashing (bcrypt), and authorization guards secure all seeker-scoped endpoints.
+- **Data Access**: Parameterized queries and remote client encapsulation secure database transaction paths.
+- **Secrets**: No secrets are committed. `.env` files are git-ignored; local development uses environment files, and templates with placeholders are tracked as `.env.example`.
+- **Reporting**: To report a vulnerability, please follow [SECURITY.md](SECURITY.md) rather than opening a public issue.
 
 ---
 
-## 📌 Project Status
+## Optional Deployment
 
-🚧 **Hirit Job Seeker Portal** — This project is an actively developed demonstration platform. It showcases the core authentication pipeline, frontend components, and dashboard interfaces configured for testing and evaluation of job seeker workflows (such as advanced filtering, resume uploads, and application tracking).
+This showcase repository has **no active GitHub Actions deployment workflow**, so normal pushes do not deploy the application or require cloud secrets.
+
+---
+
+## Contributing
+
+Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) for setup, quality checks, and the pull-request process.
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+---
+
+## License
+
+Licensed under the [MIT License](LICENSE). © 2026 Prakash Software Solutions Pvt. Ltd.
+
+---
+
+## About PSSPL
+
+**Prakash Software Solutions Pvt. Ltd. (PSSPL)** is an enterprise AI and software engineering company with 26+ years of experience, delivering solutions across Artificial Intelligence, Generative AI, Microsoft Azure, Data & AI, and enterprise application development (.NET, React, SQL, Cloud). Hirit is one of our engineering showcases, demonstrating end-to-end full-stack product delivery.
+
+## 📬 Contact
+
+- 🌐 Website: [www.prakashinfotech.com](https://www.prakashinfotech.com)
+- 💼 LinkedIn: [Prakash Software Solutions](https://www.linkedin.com/company/prakash-software-solutions-pvt-ltd)
+- ✉️ Email: info@prakashinfotech.com
+
+---
+
+**Built with ❤️ for the Indian recruitment market by [Prakash Software Solutions (PSSPL)](https://www.prakashinfotech.com)**
