@@ -1,3 +1,5 @@
+![Hirit responsive job portal platform](docs/images/hirit-platform-showcase.jpg)
+
 # Hirit
 
 **Simplify your job search, accelerate your career.**
@@ -9,6 +11,8 @@ Hirit — a modern full-stack job search and seeker dashboard portal for the Ind
 [![React](https://img.shields.io/badge/React-18-blue?logo=react)](https://react.dev/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.111-success?logo=fastapi)](https://fastapi.tiangolo.com/)
 [![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-3ECF8E?logo=supabase)](https://supabase.com/)
+
+> Built and maintained by **Prakash Software Solutions Pvt. Ltd. (PSSPL)**. This repository contains no production credentials or default user passwords.
 
 ---
 
