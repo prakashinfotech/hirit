@@ -18,7 +18,7 @@ import EmptyState from '../../components/ui/EmptyState';
 import Pagination from '../../components/ui/Pagination';
 import { getJobs, deleteJob, toggleJobStatus } from '../../api/jobs';
 import { cn, formatDate } from '../../lib/utils';
-import type { Job } from '../../types';
+import type { Job, PaginatedResponse } from '../../types';
 
 // ─── Status tab config ────────────────────────────────────────────────────────
 
@@ -229,7 +229,7 @@ export default function MyJobsPage() {
   const [page, setPage] = useState(1);
   const [actionJobId, setActionJobId] = useState<string | null>(null);
 
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading, isError } = useQuery<PaginatedResponse<Job>>({
     queryKey: ['employer-jobs', page],
     queryFn: () =>
       getJobs({ page, page_size: PAGE_SIZE }),

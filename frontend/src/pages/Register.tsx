@@ -23,7 +23,7 @@ const schema = z
     password_confirm: z.string().min(1, 'Please confirm your password'),
     role: z.enum([UserRole.SEEKER, UserRole.EMPLOYER]),
     company_name: z.string().optional(),
-    terms: z.literal(true, { errorMap: () => ({ message: 'You must accept the terms' }) }),
+    terms: z.literal(true, { message: 'You must accept the terms' }),
   })
   .refine((d) => d.password === d.password_confirm, {
     message: "Passwords don't match",

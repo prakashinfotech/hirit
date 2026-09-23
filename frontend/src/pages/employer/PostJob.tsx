@@ -1,4 +1,4 @@
-import { useState, KeyboardEvent } from 'react';
+import { useState, type KeyboardEvent } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -154,7 +154,7 @@ export default function PostJobPage() {
     watch,
     formState: { errors },
   } = useForm<JobFormValues>({
-    resolver: zodResolver(jobSchema),
+    resolver: zodResolver(jobSchema) as any,
     defaultValues: {
       job_type: JobType.FULL_TIME,
       is_remote: false,
@@ -300,7 +300,7 @@ export default function PostJobPage() {
       </div>
 
       <form
-        onSubmit={handleSubmit((v) => onSubmit(v, false))}
+        onSubmit={handleSubmit((v) => onSubmit(v as JobFormValues, false))}
         noValidate
         className="space-y-8"
       >
@@ -600,7 +600,7 @@ export default function PostJobPage() {
           <button
             type="button"
             disabled={isSubmitting}
-            onClick={handleSubmit((v) => onSubmit(v, true))}
+            onClick={handleSubmit((v) => onSubmit(v as JobFormValues, true))}
             className="rounded-lg border border-[#1a1a2e] px-6 py-2.5 text-sm font-medium text-[#1a1a2e] transition-colors hover:bg-[#f5f5f5] disabled:cursor-not-allowed disabled:opacity-50"
           >
             Save as Draft

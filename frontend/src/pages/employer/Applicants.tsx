@@ -306,7 +306,7 @@ export default function ApplicantsPage() {
       });
       toast.success('Applicant status updated.');
     },
-    onError: (_err, { appId }) => {
+    onError: () => {
       // Revert optimistic update
       queryClient.invalidateQueries({ queryKey: ['applicants', jobId] });
       toast.error('Failed to update status.');
